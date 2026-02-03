@@ -1,0 +1,75 @@
+{% load static %}
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<!-- Request Demo Modal -->
+<div class="modal" id="demoModal" aria-hidden="true">
+  <div class="modal__backdrop" data-close-demo></div>
+
+  <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="demoTitle">
+    <button class="modal__close" type="button" data-close-demo aria-label="Close">×</button>
+
+    <h2 id="demoTitle" class="modal__title">Submit Inquiry</h2>
+    <p class="modal__subtitle">Fill in the details below and we’ll get you started.</p>
+
+   <form id="demoForm" method="post" action="{% url 'cmmsApp:request_demo' %}" novalidate>
+      {% csrf_token %}
+
+      <div class="grid">
+        <div class="field">
+          <label for="full_name">Full Name*</label>
+          <input id="full_name" name="full_name" type="text" placeholder="Name" required>
+          <small class="error" data-error-for="full_name"></small>
+        </div>
+
+        <div class="field">
+          <label for="company">Company*</label>
+          <input id="company" name="company" type="text" placeholder="Company" required>
+          <small class="error" data-error-for="company"></small>
+        </div>
+
+        <div class="field">
+          <label for="email">Email*</label>
+          <input id="email" name="email" type="email" placeholder="you@company.com" required>
+          <small class="error" data-error-for="email"></small>
+        </div>
+
+        <div class="field">
+          <label for="phone">Phone Number*</label>
+          <input id="phone" name="phone" type="tel" placeholder="+61 4xx xxx xxx" required>
+          <small class="error" data-error-for="phone"></small>
+        </div>
+
+        <div class="field">
+          <label for="country">Country*</label>
+          <select id="country" name="country" required></select>
+          <small class="error" data-error-for="country"></small>
+        </div>
+
+        <div class="field">
+          <label for="address">Address</label>
+          <input id="address" name="address" type="text" placeholder="Address">
+        </div>
+
+        <div class="field field--full">
+          <label for="message">More Information</label>
+          <textarea id="message" name="message" rows="3" placeholder="Message"></textarea>
+        </div>
+      </div>
+
+      <p class="privacy">
+        Your privacy is important to us. We’ll only use your information to communicate about LV Electrical Panels.
+      </p>
+
+      <div class="modal__footer">
+  <button class="btn-submit" id="submitBtn" type="submit" form="demoForm">
+    <span class="btn-label">Submit</span>
+    <span class="spinner" aria-hidden="true"></span>
+  </button>
+</div>
+    </form>
+    
+<!-- New footer OUTSIDE the form -->
+
+  </div>
+</div>
+<div id="cmmsToastRoot" class="cmms-toast-wrap" aria-live="polite" aria-atomic="true"></div>

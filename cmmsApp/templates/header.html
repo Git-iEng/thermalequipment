@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!--=============== REMIXICONS ===============-->
+  <link rel="stylesheet" href="{% static 'css/demo_form.css' %}">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+  <!--=============== CSS ===============-->
+  <link rel="stylesheet" href="{% static 'css/header.css' %}">
+</head>
+
+<body>
+  {% include 'request_demo_modal.html' %}
+
+  <!--=============== HEADER ===============-->
+<header class="header">
+  <nav class="nav container" aria-label="Primary">
+    <div class="nav__data">
+      <a href="#home" class="nav__logo" data-scroll-to>
+        <img src="{% static 'images/logo.png' %}" alt="Company Logo" class="logo-img">
+      </a>
+
+      <button class="nav__toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu">
+        <i class="ri-menu-line nav__burger"></i>
+        <i class="ri-close-line nav__close"></i>
+      </button>
+    </div>
+
+    <!--=============== NAV MENU ===============-->
+    <div class="nav__menu" id="nav-menu">
+      <ul class="nav__list">
+        <!-- Simple section anchors (no dropdowns) -->
+        <li class="dropdown__item">
+          <a href="#solutions" class="nav__link" data-scroll-to>Solutions</a>
+        </li>
+        <li class="dropdown__item">
+          <a href="#features" class="nav__link" data-scroll-to>Features</a>
+        </li>
+       
+        <li class="dropdown__item">
+          <a href="#projects" class="nav__link" data-scroll-to>Projects</a>
+        </li>
+         <li class="dropdown__item">
+          <a href="#about-us" class="nav__link" data-scroll-to>About</a>
+        </li>
+        <li class="dropdown__item">
+          <a href="#contact" class="nav__link" data-scroll-to>Contact</a>
+        </li>
+
+        <button type="button" class="book-demo-btn js-open-demo" data-scroll-to data-target="#request-demo">
+          Submit Inquiry <i class="bi bi-arrow-right-circle"></i>
+        </button>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+
+  <!-- Your sections go below … -->
+
+  <!--=============== MAIN JS ===============-->
+  <script src="{% static 'js/header.js' %}"></script>
+  <script defer src="{% static 'js/demo_form.js' %}"></script>
+  <script>
+    /* ===== Smooth in-page scroll + active link + mobile close ===== */
+    (function () {
+      const header = document.querySelector('.header');
+      const navMenu = document.getElementById('nav-menu');
+      const navToggle = document.getElementById('nav-toggle');
+      const links = document.querySelectorAll('[data-scroll-to]');
+
+      function headerOffset() {
+        return header ? header.offsetHeight : 0;
+      }
+
+      function smoothScrollTo(id) {
+        const target = id ? document.querySelector(id) : null;
+        if (!target) return;
+
+        const y = target.getBoundingClientRect().top + window.pageYOffset - headerOffset();
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+
+      function setActiveOnScroll() {
+        const sections = document.querySelectorAll('section[id]');
+        let current = '';
+        sections.forEach(sec => {
+          const secTop = sec.offsetTop - headerOffset() - 1;
+          if (pageYOffset >= secTop) current = sec.getAttribute('id');
+        });
+        document.querySelectorAll('.nav__link, .dropdown__link').forEach(a => {
+          const href = a.getAttribute('href') || a.dataset.target;
+          a.classList.toggle('active-link', href === `#${current}`);
+        });
+      }
+
+      // Click handler
+      links.forEach(el => {
+        el.addEventListener('click', (e) => {
+          const targetSel = el.getAttribute('href') || el.dataset.target;
+          if (!targetSel || !targetSel.startsWith('#')) return;
+          e.preventDefault();
+          smoothScrollTo(targetSel);
+          // close mobile menu
+          if (navMenu?.classList.contains('show-menu')) {
+            navMenu.classList.remove('show-menu');
+            navToggle?.setAttribute('aria-expanded', 'false');
+          }
+        });
+      });
+
+      // Toggle mobile nav
+      navToggle?.addEventListener('click', () => {
+        navMenu.classList.toggle('show-menu');
+        const expanded = navMenu.classList.contains('show-menu');
+        navToggle.setAttribute('aria-expanded', String(expanded));
+      });
+
+      window.addEventListener('scroll', setActiveOnScroll);
+      window.addEventListener('load', () => {
+        // If page loads with a hash, adjust to header height
+        if (window.location.hash) {
+          setTimeout(() => smoothScrollTo(window.location.hash), 0);
+        }
+        setActiveOnScroll();
+      });
+    })();
+  </script>
+  <!-- ...same head/body/header markup as you posted... -->
+
+<script>
+  /* ===== Smooth in-page scroll + active link + mobile close ===== */
+  (function () {
+    const header = document.querySelector('.header');
+    const nav = document.querySelector('.nav');               // NEW
+    const navMenu = document.getElementById('nav-menu');
+    const navToggle = document.getElementById('nav-toggle');
+    const links = document.querySelectorAll('[data-scroll-to]');
+
+    function headerOffset() {
+      return header ? header.offsetHeight : 0;
+    }
+
+    function smoothScrollTo(id) {
+      const target = id ? document.querySelector(id) : null;
+      if (!target) return;
+      const y = target.getBoundingClientRect().top + window.pageYOffset - headerOffset();
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+
+    function setActiveOnScroll() {
+      const sections = document.querySelectorAll('section[id]');
+      let current = '';
+      sections.forEach(sec => {
+        const secTop = sec.offsetTop - headerOffset() - 1;
+        if (pageYOffset >= secTop) current = sec.getAttribute('id');
+      });
+      document.querySelectorAll('.nav__link, .dropdown__link').forEach(a => {
+        const href = a.getAttribute('href') || a.dataset.target;
+        a.classList.toggle('active-link', href === `#${current}`);
+      });
+    }
+
+    function openMenu() {
+      navMenu.classList.add('show-menu');
+      nav?.classList.add('show-icon');              // NEW: swap icons
+      document.body.classList.add('no-scroll');     // Optional: lock body scroll
+      navToggle?.setAttribute('aria-expanded', 'true');
+    }
+
+    function closeMenu() {
+      navMenu.classList.remove('show-menu');
+      nav?.classList.remove('show-icon');           // NEW
+      document.body.classList.remove('no-scroll');  // Optional
+      navToggle?.setAttribute('aria-expanded', 'false');
+    }
+
+    // Click handler for in-page links
+    links.forEach(el => {
+      el.addEventListener('click', (e) => {
+        const targetSel = el.getAttribute('href') || el.dataset.target;
+        if (!targetSel || !targetSel.startsWith('#')) return;
+        e.preventDefault();
+        smoothScrollTo(targetSel);
+        closeMenu();                                 // close on navigate (mobile)
+      });
+    });
+
+    // Toggle mobile nav
+    navToggle?.addEventListener('click', () => {
+      const isOpen = navMenu.classList.contains('show-menu');
+      isOpen ? closeMenu() : openMenu();
+    });
+
+    // Close when clicking outside the menu (mobile)
+    document.addEventListener('click', (e) => {
+      const isClickInside = nav?.contains(e.target);
+      if (!isClickInside && navMenu.classList.contains('show-menu')) {
+        closeMenu();
+      }
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && navMenu.classList.contains('show-menu')) {
+        closeMenu();
+      }
+    });
+
+    window.addEventListener('scroll', setActiveOnScroll);
+    window.addEventListener('load', () => {
+      if (window.location.hash) {
+        setTimeout(() => smoothScrollTo(window.location.hash), 0);
+      }
+      setActiveOnScroll();
+    });
+  })();
+</script>
+
+</body>
+</html>

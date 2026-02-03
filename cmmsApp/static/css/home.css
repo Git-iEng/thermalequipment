@@ -1,0 +1,3233 @@
+html,
+body {
+  margin: 0;
+  /* remove default 8px margin that causes scroll with full-bleed rows */
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+  /* belt-and-suspenders: stop any stray overflow */
+}
+
+/* ============= THEME TOKENS ============= */
+:root {
+  --teal-700-solar: #d34300;
+  --cyan-800-solar: #751515;
+  --ink-solar: #0b1220;
+  --muted-solar: #6b7a8c;
+  --bg-solar: #ffffff;
+  --card-solar: #0f1b2a;
+  --white-solar: #ffffff;
+  --radius-xxl-solar: 22px;
+  --shadow-soft-solar: 0 10px 30px rgba(0, 0, 0, .08);
+  --container-w-solar: 1200px;
+  --header-h-solar: 72px;
+  /* for scroll-margin if needed */
+}
+
+section[id] {
+  scroll-margin-top: var(--header-h-solar);
+}
+
+/* ============= BASE LAYOUT ============= */
+.container-solar-system {
+  width: min(92vw, var(--container-w-solar));
+  margin-inline: auto;
+}
+
+.section-hero-solar-system {
+  position: relative;
+  background: white;
+  padding-top: 3vw;
+  padding: clamp(48px, 1.2vw, 80px) 0 0;
+}
+
+.grid-hero-solar-system {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: clamp(24px, 4vw, 48px);
+  align-items: center;
+}
+
+.hero-left-solar-system {}
+
+.hero-right-solar-system {
+  justify-self: end;
+}
+
+.hero-title-solar-system {
+  font-size: clamp(32px, 5vw, 56px);
+  line-height: 1.05;
+  letter-spacing: .2px;
+  color: var(--ink-solar);
+  margin: 0 0 14px;
+  font-weight: 800;
+}
+
+.accent-solar-system {
+  color: var(--teal-700-solar);
+}
+
+.hero-sub-solar-system {
+  color: var(--muted-solar);
+  margin: 0 0 26px;
+  font-size: clamp(15px, 1.8vw, 18px);
+}
+
+.hero-cta-solar-system {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-primary-solar-system,
+.btn-ghost-solar-system {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 18px;
+  border-radius: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 2px solid transparent;
+  transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease, color .2s ease, border-color .2s ease;
+}
+
+.btn-primary-solar-system {
+  background: linear-gradient(135deg, var(--teal-700-solar), var(--cyan-800-solar));
+  color: var(--white-solar);
+  box-shadow: var(--shadow-soft-solar);
+}
+
+.btn-primary-solar-system:hover {
+  transform: translateY(-2px);
+}
+
+.btn-ghost-solar-system {
+  background: transparent;
+  border-color: var(--cyan-800-solar);
+  color: var(--cyan-800-solar);
+}
+
+.btn-ghost-solar-system:hover {
+  background: var(--cyan-800-solar);
+  color: var(--white-solar);
+}
+
+.hero-img-solar-system {
+  width: min(520px, 40vw);
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 18px;
+  box-shadow: 0 16px 40px rgba(6, 18, 32, .18);
+  display: block;
+}
+
+.hero-band-solar-system {
+  display: none;
+  position: absolute;
+  left: 50%;
+  transform: translateX(10%);
+  /* nudged to sit under the image like the reference */
+  bottom: -42px;
+  width: min(520px, 40vw);
+  height: 100px;
+  background: var(--card-solar);
+  border-bottom-left-radius: var(--radius-xxl-solar);
+  border-bottom-right-radius: var(--radius-xxl-solar);
+  z-index: 0;
+}
+
+.hero-right-solar-system,
+.hero-left-solar-system {
+  position: relative;
+  z-index: 1;
+}
+
+/* Trusted section */
+.section-trusted-solar-system {
+  background: #0f1b2a;
+  /* deep slate like your screenshot */
+  color: #fff;
+  padding: clamp(56px, 8vw, 84px) 0;
+  margin-top: clamp(28px, 6vw, 60px);
+}
+
+.trusted-heading-solar-system {
+  text-align: center;
+  font-size: clamp(18px, 2.2vw, 24px);
+  font-weight: 800;
+  letter-spacing: .2px;
+  margin: 0 0 clamp(18px, 3vw, 24px);
+}
+
+/* Logo carousel */
+.logos-wrap-solar-system {
+  overflow: hidden;
+  position: relative;
+  padding: 6px 0;
+  /* subtle breathing space */
+  background: transparent;
+  /* no panel look */
+  border-radius: 0;
+}
+
+.logos-track-solar-system {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(28px, 4vw, 46px);
+  padding-inline: 12px;
+  animation: marquee-solar-system 28s linear infinite;
+  will-change: transform;
+}
+
+.logos-wrap-solar-system:hover .logos-track-solar-system {
+  animation-play-state: paused;
+}
+
+.logo-item-solar-system {
+  height: clamp(22px, 3.2vw, 34px);
+  width: auto;
+  opacity: .9;
+  filter: invert(1) grayscale(1) contrast(1.15);
+  transition: opacity .2s ease, transform .2s ease;
+}
+
+.logo-item-solar-system:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+@keyframes marquee-solar-system {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+
+}
+
+
+/* --- DOTS (pagination) --- */
+.dots-solar-system {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: clamp(10px, 2vw, 14px);
+}
+
+.dot-solar-system {
+  width: 6px;
+  height: 6px;
+  background: rgba(255, 255, 255, .35);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform .15s ease, background .2s ease;
+}
+
+.dot-solar-system.is-active-solar-system {
+  background: rgba(255, 255, 255, .85);
+  transform: scale(1.15);
+}
+
+/* ============= SCROLL REVEAL ============= */
+.reveal-solar-system {
+  opacity: 0;
+  transform: translateY(28px) scale(.98);
+  transition: opacity .7s cubic-bezier(.2, .65, .2, 1),
+    transform .7s cubic-bezier(.2, .65, .2, 1);
+}
+
+.in-view-solar-system {
+  opacity: 1 !important;
+  transform: translateY(0) scale(1) !important;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .logos-track-solar-system {
+    animation: none;
+  }
+
+  .reveal-solar-system,
+  .in-view-solar-system {
+    transition: none;
+    transform: none;
+    opacity: 1;
+  }
+}
+
+/* ============= RESPONSIVE ============= */
+@media (max-width: 960px) {
+  .grid-hero-solar-system {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-right-solar-system {
+    justify-self: start;
+  }
+
+  .hero-img-solar-system,
+  .hero-band-solar-system {
+    width: 100%;
+    max-width: 520px;
+  }
+
+  .hero-band-solar-system {
+    left: 0;
+    transform: none;
+  }
+}
+
+/* --- RESPONSIVE polish --- */
+@media (max-width: 960px) {
+  .grid-hero-solar-system {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-img-solar-system {
+    width: 100%;
+    max-width: 520px;
+  }
+}
+
+@media (max-width: 560px) {
+  .logos-track-solar-system {
+    gap: 24px;
+  }
+
+  .trusted-heading-solar-system {
+    font-size: 18px;
+  }
+}
+
+/* ========= Overlap settings ========= */
+:root {
+  --overlap-solar: 64px;
+  /* how much the image dips into the next section on desktop */
+}
+
+/* Make sure the hero image can layer above the next section */
+.section-hero-solar-system {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-right-solar-system {
+  position: relative;
+}
+
+.hero-img-solar-system {
+  position: relative;
+  z-index: 3;
+  /* sits above the Trusted section */
+  display: block;
+  border-radius: 18px;
+  box-shadow: 0 16px 40px rgba(6, 18, 32, .18);
+}
+
+/* Remove the old base band if still present */
+.hero-band-solar-system {
+  display: none !important;
+}
+
+/* ===== Desktop/Large: create the overlap ===== */
+@media (min-width: 961px) {
+
+  /* Dip the image down */
+  .hero-img-solar-system {
+    transform: translateY(var(--overlap-solar));
+  }
+
+  /* Pull the Trusted section up so the image overlaps it */
+  .section-trusted-solar-system {
+    position: relative;
+    z-index: 1;
+    margin-top: calc(var(--overlap-solar) * -1);
+    /* move section upward */
+    padding-top: calc(clamp(56px, 8vw, 84px) + var(--overlap-solar));
+    /* keep heading in place */
+    /* Optional: soften the seam as it tucks under the image */
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .04);
+  }
+}
+
+/* ===== Mobile/Tablet: no overlap (clean stack) ===== */
+@media (max-width: 960px) {
+  .hero-img-solar-system {
+    transform: none;
+  }
+
+  .section-trusted-solar-system {
+    margin-top: clamp(28px, 6vw, 60px);
+    /* your normal spacing */
+    padding-top: clamp(56px, 8vw, 84px);
+  }
+}
+
+/* Stop marquee while user is paging via dots */
+.logos-track-solar-system.manual-solar-system {
+  animation: none !important;
+}
+
+
+
+/* why us */
+
+/* ====== WHY section: structure ====== */
+.section-why-solar-system-why {
+  background: var(--bg-solar);
+  padding: clamp(56px, 8vw, 96px) 0;
+}
+
+.eyebrow-solar-system-why {
+  color: var(--teal-700-solar);
+  font-weight: 800;
+  letter-spacing: .4px;
+  text-align: center;
+  margin: 0 0 8px;
+}
+
+.title-solar-system-why {
+  text-align: center;
+  color: var(--ink-solar);
+  font-size: clamp(24px, 4vw, 40px);
+  line-height: 1.15;
+  margin: 0 0 clamp(28px, 5vw, 48px);
+  font-weight: 800;
+}
+
+/* Grid with subtle vertical dividers like your screenshot */
+.grid-solar-system-why {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(18px, 3vw, 28px) clamp(18px, 3vw, 32px);
+  position: relative;
+}
+
+/* create column separators */
+.grid-solar-system-why>.card-solar-system-why {
+  position: relative;
+  padding: clamp(16px, 3vw, 22px);
+  background: transparent;
+}
+
+.grid-solar-system-why>.card-solar-system-why:nth-child(1),
+.grid-solar-system-why>.card-solar-system-why:nth-child(2),
+.grid-solar-system-why>.card-solar-system-why:nth-child(4),
+.grid-solar-system-why>.card-solar-system-why:nth-child(5) {
+  border-right: 1px solid rgba(21, 94, 117, .15);
+  /* cyan-800 at low opacity */
+}
+
+.grid-solar-system-why>.card-solar-system-why:nth-child(n+4) {
+  border-top: 1px solid rgba(21, 94, 117, .15);
+}
+
+/* card content */
+.icon-wrap-solar-system-why {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--teal-700-solar), var(--cyan-800-solar));
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(15, 118, 110, .25);
+  margin-bottom: 12px;
+  flex-shrink: 0;
+}
+
+.icon-wrap-solar-system-why i {
+  font-size: 22px;
+  line-height: 1;
+}
+
+.card-title-solar-system-why {
+  margin: 0 0 6px;
+  font-weight: 800;
+  color: var(--ink-solar);
+  font-size: clamp(16px, 2vw, 18px);
+}
+
+.card-text-solar-system-why {
+  margin: 0;
+  color: var(--muted-solar);
+  font-size: clamp(14px, 1.9vw, 16px);
+  line-height: 1.65;
+}
+
+/* ====== Reveal Animations (slow) ======
+   Uses your existing JS: it toggles .in-view-solar-system.
+   Add direction classes ending with -solar-system-why.
+*/
+.reveal-left-solar-system-why,
+.reveal-right-solar-system-why,
+.reveal-top-solar-system-why,
+.reveal-bottom-solar-system-why {
+  opacity: 0;
+  transform: translate3d(0, 0, 0);
+  transition:
+    opacity 1.05s cubic-bezier(.2, .65, .2, 1),
+    transform 1.05s cubic-bezier(.2, .65, .2, 1);
+  will-change: opacity, transform;
+}
+
+/* initial offsets */
+.reveal-left-solar-system-why {
+  transform: translateX(-28px);
+}
+
+.reveal-right-solar-system-why {
+  transform: translateX(28px);
+}
+
+.reveal-top-solar-system-why {
+  transform: translateY(-28px);
+}
+
+.reveal-bottom-solar-system-why {
+  transform: translateY(28px);
+}
+
+/* when JS adds .in-view-solar-system to the same element */
+.in-view-solar-system.reveal-left-solar-system-why,
+.in-view-solar-system.reveal-right-solar-system-why,
+.in-view-solar-system.reveal-top-solar-system-why,
+.in-view-solar-system.reveal-bottom-solar-system-why {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+/* prefer-reduced-motion: show everything without animation */
+@media (prefers-reduced-motion: reduce) {
+
+  .reveal-left-solar-system-why,
+  .reveal-right-solar-system-why,
+  .reveal-top-solar-system-why,
+  .reveal-bottom-solar-system-why {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* ====== Responsive ====== */
+@media (max-width: 992px) {
+  .grid-solar-system-why {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* tidy borders for 2-column layout */
+  .grid-solar-system-why>.card-solar-system-why {
+    border-right: none;
+    border-top: none;
+  }
+
+  .grid-solar-system-why>.card-solar-system-why:nth-child(odd) {
+    border-right: 1px solid rgba(21, 94, 117, .15);
+  }
+
+  .grid-solar-system-why>.card-solar-system-why:nth-child(n+3) {
+    border-top: 1px solid rgba(21, 94, 117, .15);
+  }
+}
+
+@media (max-width: 560px) {
+  .grid-solar-system-why {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-solar-system-why>.card-solar-system-why {
+    border: none !important;
+    padding: 14px 2px;
+  }
+}
+
+html,
+body {
+  margin: 0;
+  /* remove default 8px margin that causes scroll with full-bleed rows */
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+  padding-top: 1rem;
+  /* belt-and-suspenders: stop any stray overflow */
+}
+
+/* ===== Tokens (keep consistent with your hero palette) ===== */
+:root {
+  --ink-lv: #0b1220;
+  --muted-lv: #6b7a8c;
+  --cta-lv: #e85b2a;
+  --panel-lv: #eef2f7;
+  --white-lv: #ffffff;
+  --container-w-lv: 1200px;
+  --radius-lv: 16px;
+  --shadow-soft-lv: 0 10px 30px rgba(0, 0, 0, .08);
+}
+
+/* ===== Layout ===== */
+.section-about-lv-electrical-about- {
+  background: #fff;
+  /* ADDED margin-top to create separation above the section */
+  margin-top: clamp(40px, 5vw, 60px); 
+  padding: clamp(66px, 6vw, 80px) 0;
+}
+
+.container-lv-electrical-about- {
+  width: 100%;
+  max-width: var(--container-w-lv);
+  margin-inline: auto;
+  padding-inline: clamp(16px, 3vw, 28px);
+}
+
+.grid-lv-electrical-about- {
+  display: grid;
+  /* UPDATED: Change to 2 balanced columns (Image + Text) */
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(16px, 3.8vw, 42px);
+  align-items: center;
+}
+
+/* ===== Media ===== */
+.media-lv-electrical-about- {
+  margin: 0;
+}
+
+.img-lv-electrical-about- {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 14px;
+  box-shadow: var(--shadow-soft-lv);
+  object-fit: cover;
+}
+
+/* ===== Copy ===== */
+.copy-lv-electrical-about- {
+  color: var(--ink-lv);
+}
+
+.eyebrow-lv-electrical-about- {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  color: #3b82f6;
+  text-decoration: none;
+  margin-bottom: 6px;
+}
+
+.zap-lv-electrical-about- {
+  filter: drop-shadow(0 1px 0 rgba(0, 0, 0, .05));
+}
+
+.title-lv-electrical-about- {
+  margin: 0 0 8px;
+  font-weight: 800;
+  font-size: clamp(22px, 2.4vw, 30px);
+  color: var(--ink-lv);
+}
+
+.lead-lv-electrical-about- {
+  margin: 0 0 12px;
+  color: var(--muted-lv);
+  font-size: clamp(14px, 1.5vw, 16px);
+}
+
+.benefits-lv-electrical-about- {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px;
+  display: grid;
+  gap: 8px;
+}
+
+.benefits-lv-electrical-about- li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink-lv);
+  font-weight: 600;
+}
+
+.dot-lv-electrical-about- {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  flex: 0 0 8px;
+  background: var(--cta-lv);
+  box-shadow: 0 0 0 3px rgba(232, 91, 42, .15);
+}
+
+.btn-primary-lv-electrical-about- {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-weight: 800;
+  color: #fff;
+  background: var(--ink-lv);
+  text-decoration: none;
+  transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+}
+
+.btn-primary-lv-electrical-about-:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+  background: #274b87;
+}
+
+/* ===== Rating Card ===== */
+/* REMOVED RATING CARD STYLES */
+
+/* ===== Reveal animation ===== */
+.reveal-lv-electrical-about- {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+
+.reveal-in-lv-electrical-about- {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1024px) {
+  .grid-lv-electrical-about- {
+    /* No change needed here, as it was already 1fr 1fr */
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .grid-lv-electrical-about- {
+    grid-template-columns: 1fr;
+  }
+}
+/* =============== TOKENS =============== */
+:root {
+  --ink-lv: #0b1220;
+  --muted-lv: #6b7a8c;
+  --white-lv: #ffffff;
+  --cta-orange-lv: #e85b2a;
+  --brand-blue-lv: #234a85;
+  --panel-border-lv: #e7edf5;
+  --shadow-soft-lv: 0 12px 28px rgba(0, 0, 0, .10);
+  --container-w-lv: 1200px;
+  --radius-lv: 12px;
+
+  /* overlap distance of the white card onto the hero image */
+  --services-overlap: clamp(36px, 6vw, 72px);
+}
+
+/* =============== HERO / IMAGE STRIP =============== */
+.section-services-lv-electrical-services {
+  position: relative;
+  color: var(--white-lv);
+  /* room for heading row; bottom padding is small because the card will overlap */
+  padding: clamp(28px, 5vw, 56px) 0 clamp(32px, 4vw, 48px);
+  overflow: clip;
+
+  /* set your background image here (no inline styles) */
+  background-image: url("../images/banner2.avif");
+  background-size: cover;
+  background-position: center right;
+  /* give the band a stable minimum height without capping large screens */
+  min-height: clamp(280px, 45vh, 520px);
+}
+
+.section-services-lv-electrical-services::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* dark-to-light gradient like your reference */
+  background: linear-gradient(90deg, rgba(12, 21, 36, .92) 0%, rgba(12, 21, 36, .70) 45%, rgba(12, 21, 36, .20) 80%);
+  pointer-events: none;
+}
+
+/* ===== Header Row ===== */
+.services-head-lv-electrical-services {
+  position: relative;
+  z-index: 1;
+  max-width: var(--container-w-lv);
+  margin-inline: auto;
+  padding: 0 clamp(16px, 3vw, 28px);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;
+  gap: 16px;
+}
+
+.eyebrow-lv-electrical-services {
+  display: inline-block;
+  color: #f0a38b;
+  font-weight: 800;
+  font-size: 13px;
+  text-decoration: none;
+  margin-bottom: 6px;
+}
+
+.title-lv-electrical-services {
+  margin: 0;
+  font-weight: 800;
+  font-size: clamp(22px, 3vw, 34px);
+  line-height: 1.2;
+}
+
+.btn-orange-lv-electrical-services {
+  align-self: start;
+  background: var(--cta-orange-lv);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  padding: 10px 14px;
+  /* border-radius: 10px; */
+  box-shadow: var(--shadow-soft-lv);
+  transition: transform .2s ease, filter .2s ease, background .2s ease;
+}
+
+.btn-orange-lv-electrical-services:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+  background: var(--brand-blue-lv);
+}
+
+/* =============== OVERLAP SECTION (WHITE CARD) =============== */
+/* This is your second <section>. It pulls upward by the overlap distance. */
+.section-services-lv-electrical-services2 {
+  position: relative;
+  margin-top: calc(-1 * var(--services-overlap));
+  /* keep stacking context tidy */
+  z-index: 2;
+  margin-bottom: 2rem;
+}
+
+/* Wrapper that centers the card and adds side padding */
+.services-card-lv-electrical-services {
+  max-width: var(--container-w-lv);
+  margin: 0 auto;
+  padding: 0 clamp(16px, 3vw, 28px);
+}
+
+/* The white card */
+.grid-lv-electrical-services {
+  background: #fff;
+  border: 1px solid var(--panel-border-lv);
+  /* border-radius: 18px; */
+  box-shadow: var(--shadow-soft-lv);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  overflow: hidden;
+}
+
+/* Thin dividers between columns on desktop */
+.grid-lv-electrical-services>.svc-item-lv-electrical-services:not(:last-child) {
+  border-right: 1px solid var(--panel-border-lv);
+}
+
+/* =============== SERVICE ITEM =============== */
+.svc-item-lv-electrical-services {
+  padding: clamp(18px, 3vw, 26px);
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  gap: 10px;
+}
+
+.svc-icon-lv-electrical-services {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  color: #1f2937;
+}
+
+.svc-icon-lv-electrical-services i {
+  font-size: 22px;
+}
+
+.svc-title-lv-electrical-services {
+  margin: 0;
+  font-size: clamp(16px, 1.8vw, 18px);
+  font-weight: 800;
+  color: var(--ink-lv);
+}
+
+.svc-title-lv-electrical-services a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.svc-title-lv-electrical-services a:hover {
+  text-decoration: underline;
+}
+
+.svc-text-lv-electrical-services {
+  margin: 0;
+  color: var(--muted-lv);
+  font-size: 14px;
+}
+
+/* .arrow-lv-electrical-services{ font-weight: 800; } */
+
+/* =============== SCROLL REVEAL (optional) =============== */
+.reveal-left-lv-electrical-services,
+.reveal-right-lv-electrical-services,
+.reveal-up-lv-electrical-services {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity .7s cubic-bezier(.2, .65, .2, 1),
+    transform .7s cubic-bezier(.2, .65, .2, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-left-lv-electrical-services {
+  transform: translateX(-28px);
+}
+
+.reveal-right-lv-electrical-services {
+  transform: translateX(28px);
+}
+
+.reveal-in-lv-electrical-services {
+  opacity: 1 !important;
+  transform: translateX(0) translateY(0) !important;
+}
+
+/* =============== RESPONSIVE =============== */
+@media (max-width: 1024px) {
+  .services-head-lv-electrical-services {
+    grid-template-columns: 1fr;
+    row-gap: 12px;
+  }
+
+  .btn-orange-lv-electrical-services {
+    justify-self: start;
+  }
+
+  .grid-lv-electrical-services {
+    grid-template-columns: 1fr;
+    /* stack cards */
+    /* border-radius: 14px; */
+  }
+
+  .grid-lv-electrical-services>.svc-item-lv-electrical-services:not(:last-child) {
+    border-right: none;
+    border-bottom: 1px solid var(--panel-border-lv);
+  }
+}
+
+@media (max-width: 640px) {
+
+  /* a little less overlap on very small screens */
+  :root {
+    --services-overlap: clamp(20px, 7vw, 40px);
+  }
+
+  .section-services-lv-electrical-services {
+    padding-bottom: clamp(28px, 5vw, 40px);
+    min-height: clamp(260px, 40vh, 420px);
+    background-position: center;
+    /* center crop on small screens */
+  }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+
+  .reveal-left-lv-electrical-services,
+  .reveal-right-lv-electrical-services,
+  .reveal-up-lv-electrical-services {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* Defaults if not defined elsewhere */
+:root {
+  --services-overlap: 64px;
+  --container-w-lv: 1200px;
+  --shadow-soft-lv: 0 18px 40px rgba(0, 0, 0, .08);
+}
+
+/* Hide extra cards initially */
+.is-hidden {
+  display: none;
+}
+
+/* Details row spans full grid width and keeps your flat style */
+.svc-detail-lv-electrical-services {
+  grid-column: 1 / -1;
+  display: none;
+  background: #fff;
+  border-top: 1px solid var(--panel-border-lv);
+  /* border-radius: 0 0 18px 18px;  -- outer radius intentionally disabled per your spec */
+  padding: clamp(18px, 3vw, 28px);
+  animation: svcDetailIn .45s cubic-bezier(.2, .65, .2, 1);
+}
+
+@keyframes svcDetailIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Detail content layout */
+.svc-detail-lv-electrical-services h3 {
+  margin: 0 0 6px 0;
+  font-size: clamp(16px, 1.8vw, 20px);
+  font-weight: 800;
+  color: var(--ink-lv);
+}
+
+.svc-detail-lv-electrical-services p {
+  margin: 0 0 10px 0;
+  color: var(--muted-lv);
+  font-size: 14px;
+}
+
+.svc-detail-list {
+  display: grid;
+  gap: 6px;
+  margin-top: 8px;
+  padding-left: 18px;
+  color: var(--ink-lv);
+  font-size: 14px;
+  list-style: disc;
+}
+
+/* Re-animate on scroll up/down (toggle reveal-in when entering/leaving) */
+.reveal-left-lv-electrical-services,
+.reveal-right-lv-electrical-services,
+.reveal-up-lv-electrical-services {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity .7s cubic-bezier(.2, .65, .2, 1),
+    transform .7s cubic-bezier(.2, .65, .2, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-left-lv-electrical-services {
+  transform: translateX(-28px);
+}
+
+.reveal-right-lv-electrical-services {
+  transform: translateX(28px);
+}
+
+.reveal-in-lv-electrical-services {
+  opacity: 1 !important;
+  transform: translateX(0) translateY(0) !important;
+}
+
+/* Floating Explore/View Less button */
+.btn-fab-lv-electrical-services {
+  position: fixed;
+  right: clamp(2px, 1vw, 2px);
+  bottom: clamp(2px, 1vw, 2px);
+  z-index: 9999;
+  display: none;
+  /* hidden until expanded */
+  padding: 1px 1px;
+  font-weight: 700;
+  color: #fff;
+  background: var(--cta-orange-lv);
+  border: none;
+  /* border-radius: 10px; */
+  /* keep square per your “no outer radius” preference */
+  box-shadow: var(--shadow-soft-lv);
+  cursor: pointer;
+  transition: transform .2s ease, filter .2s ease, background .2s ease;
+}
+
+.btn-fab-lv-electrical-services:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+  background: var(--brand-blue-lv);
+}
+
+/* If users prefer reduced motion, keep it steady */
+@media (prefers-reduced-motion: reduce) {
+  .btn-fab-lv-electrical-services {
+    transition: none;
+  }
+}
+
+/* makes the header (with the button) stick to the top */
+.services-head-lv-electrical-services {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  /* background: linear-gradient(90deg, rgba(12,21,36,.92) 0%, rgba(12,21,36,.70) 45%, rgba(12,21,36,.20) 80%); */
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+/* ===== tokens (align with your existing palette) ===== */
+:root {
+  --ink-lv: #0b1220;
+  --muted-lv: #6b7a8c;
+  --panel-lv: #f7f9fc;
+  --border-lv: #e7edf5;
+  --container-w-lv: 1200px;
+  --shadow-soft-lv: 0 10px 28px rgba(0, 0, 0, .08);
+}
+
+/* ===== section wrapper ===== */
+.section-process-lv-electrical-process {
+  background: #fff;
+  padding: clamp(16px, 1vw, 30px) 0;
+  /* max-width: 1100px; */
+}
+
+
+.grid-lv-electrical-process {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: clamp(18px, 4vw, 44px);
+  align-items: start;
+}
+
+/* ===== left column ===== */
+.media-lv-electrical-process {
+  margin: 0 0 clamp(12px, 2vw, 16px);
+}
+
+.img-lv-electrical-process {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: var(--shadow-soft-lv);
+}
+
+.eyebrow-lv-electrical-process {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 800;
+  color: #3b82f6;
+  text-decoration: none;
+  margin: 6px 0;
+}
+
+.bolt-icon-lv-electrical-process {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  display: inline-block;
+}
+
+.title-lv-electrical-process {
+  margin: 4px 0 8px;
+  font-weight: 800;
+  font-size: clamp(22px, 2.6vw, 30px);
+  color: var(--ink-lv);
+}
+
+.lead-lv-electrical-process {
+  margin: 0 0 14px;
+  color: var(--muted-lv);
+  font-size: clamp(14px, 1.6vw, 16px);
+  max-width: 56ch;
+}
+
+/* NOTE: the button uses .btn-orange-lv-electrical-services from your existing CSS */
+
+/* ===== right column: vertical timeline ===== */
+.timeline-lv-electrical-process {
+  position: relative;
+  background: #fff;
+}
+
+.timeline-list-lv-electrical-process {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+
+/* Vertical line */
+.timeline-list-lv-electrical-process::before {
+  content: "";
+  position: absolute;
+  left: 20px;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  background: linear-gradient(to bottom, #f59e0b 0 18%, #d1d9e6 18% 100%);
+  /* orange tip then light grey */
+  border-radius: 2px;
+}
+
+/* Step row */
+.timeline-item-lv-electrical-process {
+  position: relative;
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  /* icon column + content */
+  gap: 14px;
+  padding: clamp(10px, 2.2vw, 16px) 0;
+}
+
+/* Icon bubble */
+.step-icon-lv-electrical-process {
+  width: 60px;
+  height: 60px;
+  border-radius: 999px;
+  background: #0e1116;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, .12),
+    inset 0 0 0 6px #fff;
+  /* white ring look from screenshot */
+  z-index: 1;
+}
+
+.step-icon-lv-electrical-process img {
+  width: 25px;
+  height: 25px;
+  object-fit: contain;
+  display: block;
+  filter: brightness(0) invert(1);
+  /* make pngs look white if they’re dark */
+}
+
+/* Content */
+.step-content-lv-electrical-process {
+  padding-bottom: 10px;
+  border-bottom: 1px dashed #d5deea;
+}
+
+.timeline-item-lv-electrical-process:last-child .step-content-lv-electrical-process {
+  border-bottom: 0;
+}
+
+.step-title-lv-electrical-process {
+  margin: 2px 0 4px;
+  font-weight: 800;
+  color: var(--ink-lv);
+  font-size: clamp(16px, 1.8vw, 18px);
+}
+
+.step-text-lv-electrical-process {
+  margin: 0;
+  color: var(--muted-lv);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+/* ===== reveal on scroll ===== */
+.reveal-left-lv-electrical-process,
+.reveal-right-lv-electrical-process {
+  opacity: 0;
+  transform: translateX(-24px);
+  transition: opacity .7s cubic-bezier(.2, .65, .2, 1),
+    transform .7s cubic-bezier(.2, .65, .2, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-right-lv-electrical-process {
+  transform: translateX(24px);
+}
+
+.reveal-in-lv-electrical-process {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* ===== responsive ===== */
+@media (max-width: 1024px) {
+  .grid-lv-electrical-process {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline-list-lv-electrical-process::before {
+    left: 20px;
+  }
+}
+
+@media (max-width: 560px) {
+  .timeline-item-lv-electrical-process {
+    grid-template-columns: 44px 1fr;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+
+  .reveal-left-lv-electrical-process,
+  .reveal-right-lv-electrical-process {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* ====== FULL-BLEED LAYOUT & NO GAP ====== */
+.section-why-le-electrical-why-us {
+  background: #fff;
+  padding: clamp(36px, 1vw, 84px) 0;
+}
+
+.container-le-electrical-why-us {
+  width: 100%;
+  max-width: none;
+  /* full width */
+  margin: 0;
+  /* no side gap */
+  padding: 0;
+  /* no side padding */
+}
+
+/* Two-column split: no gutter */
+.grid-le-electrical-why-us {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* equal halves */
+  gap: 0;
+  /* remove gap between left & right */
+  align-items: stretch;
+  /* max-width: 1400px;    */
+  /* equal heights */
+}
+
+/* LEFT dark panel: no outer radius */
+.left-le-electrical-why-us {
+  background: #0e141c;
+  color: #eef3fb;
+  border-radius: 0;
+  /* no outer rounding */
+  padding: clamp(16px, 3.2vw, 28px);
+  margin: 0;
+  /* tight to edges */
+}
+
+
+/* RIGHT image: flush, no radius */
+.media-le-electrical-why-us {
+  margin: 0;
+}
+
+.img-le-electrical-why-us {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 0;
+  /* no outer rounding */
+  box-shadow: none;
+  /* remove soft edge for full-bleed feel */
+}
+
+/* ====== CONTENT (unchanged visuals) ====== */
+.eyebrow-le-electrical-why-us {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  color: #f0a38b;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+.title-le-electrical-why-us {
+  margin: 4px 0 12px;
+  font-size: clamp(22px, 3vw, 34px);
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.cards-le-electrical-why-us {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.card-le-electrical-why-us {
+  border: 1px solid rgba(255, 255, 255, .14);
+  border-radius: 12px;
+  padding: 16px;
+  background: transparent;
+  transition: transform .2s, box-shadow .2s, border-color .2s;
+}
+
+.card-le-electrical-why-us:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, .18);
+  border-color: rgba(255, 255, 255, .28);
+}
+
+.card-title-le-electrical-why-us {
+  margin: 0 0 6px;
+  font-weight: 800;
+}
+
+.card-text-le-electrical-why-us {
+  margin: 0;
+  color: #9fb0c6;
+  line-height: 1.65;
+}
+
+.footnote-le-electrical-why-us {
+  margin: 12px 0 0;
+  color: #9fb0c6;
+}
+
+.footnote-le-electrical-why-us a {
+  color: #e85b2a;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.footnote-le-electrical-why-us a:hover {
+  text-decoration: underline;
+}
+
+/* ====== MIDDLE CIRCLE: ARROW ONLY ====== */
+/* keep link element as-is; we’ll hide its inner text visually and render an arrow */
+.floating-cta-le-electrical-why-us {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 74px;
+  height: 74px;
+  border-radius: 999px;
+  background: #e85b2a;
+  color: #fff;
+  display: grid;
+  place-items: center;
+  text-decoration: none;
+  box-shadow: 0 12px 28px rgba(232, 91, 42, .35);
+  animation: spin-le-electrical-why-us 7.5s linear infinite;
+}
+
+.floating-cta-le-electrical-why-us:hover {
+  filter: brightness(1.05);
+  transform: translate(-50%, -50%) scale(1.03);
+}
+
+/* Hide any inner text (e.g., 'Contact Us') accessibly */
+.floating-cta-le-electrical-why-us>* {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Render arrow */
+.floating-cta-le-electrical-why-us::after {
+  content: "➜";
+  font-weight: 900;
+  font-size: 22px;
+  line-height: 1;
+}
+
+/* keep gentle spin */
+@keyframes spin-le-electrical-why-us {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* ====== REVEALS (unchanged) ====== */
+.reveal-left-le-electrical-why-us,
+.reveal-right-le-electrical-why-us,
+.reveal-top-le-electrical-why-us,
+.reveal-bottom-le-electrical-why-us {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .8s cubic-bezier(.2, .65, .2, 1),
+    transform .8s cubic-bezier(.2, .65, .2, 1);
+}
+
+.reveal-left-le-electrical-why-us {
+  transform: translateX(-28px);
+}
+
+.reveal-right-le-electrical-why-us {
+  transform: translateX(28px);
+}
+
+.reveal-top-le-electrical-why-us {
+  transform: translateY(-28px);
+}
+
+.reveal-bottom-le-electrical-why-us {
+  transform: translateY(28px);
+}
+
+.reveal-in-le-electrical-why-us {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width:1024px) {
+  .grid-le-electrical-why-us {
+    grid-template-columns: 1fr;
+  }
+
+  .floating-cta-le-electrical-why-us {
+    position: static;
+    margin: 12px auto 0;
+    transform: none;
+    animation: none;
+    width: 64px;
+    height: 64px;
+  }
+
+  .img-le-electrical-why-us {
+    height: 320px;
+  }
+}
+
+@media (max-width:640px) {
+  .cards-le-electrical-why-us {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion:reduce) {
+
+  .reveal-left-le-electrical-why-us,
+  .reveal-right-le-electrical-why-us,
+  .reveal-top-le-electrical-why-us,
+  .reveal-bottom-le-electrical-why-us {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .floating-cta-le-electrical-why-us {
+    animation: none !important;
+  }
+}
+
+/* ===== Details layout with optional image ===== */
+.svc-detail-lv-electrical-services {
+  grid-column: 1 / -1;
+  display: none;
+  background: #fff;
+  border-top: 1px solid var(--panel-border-lv);
+  padding: clamp(18px, 3vw, 28px);
+  animation: svcDetailIn .45s cubic-bezier(.2, .65, .2, 1);
+}
+
+@keyframes svcDetailIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.svc-detail-lv-electrical-services {
+  grid-column: 1 / -1;
+  display: none;
+  background: #fff;
+  border-top: 1px solid var(--panel-border-lv);
+  padding: clamp(18px, 3vw, 28px);
+  animation: svcDetailIn .45s cubic-bezier(.2, .65, .2, 1);
+}
+
+@keyframes svcDetailIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.svc-detail-layout {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: clamp(14px, 2.5vw, 24px);
+  align-items: start;
+}
+
+.svc-detail-figure {
+  margin: 0;
+  border: 1px solid var(--panel-border-lv);
+  background: #fafbfc;
+  overflow: hidden;
+}
+
+.svc-detail-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+}
+
+.svc-detail-copy h3 {
+  margin: 0 0 8px;
+  font-size: clamp(16px, 1.8vw, 20px);
+  font-weight: 800;
+  color: var(--ink-lv);
+}
+
+.svc-detail-copy p {
+  margin: 8px 0;
+  color: var(--muted-lv);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.svc-detail-copy h4 {
+  margin: 16px 0 8px;
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--ink-lv);
+}
+
+.svc-detail-copy ul {
+  margin: 6px 0 12px 18px;
+  color: var(--ink-lv);
+  font-size: 14px;
+  line-height: 1.6;
+  list-style: disc;
+}
+
+@media (max-width: 900px) {
+  .svc-detail-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Compact CTA button */
+.svc-cta-lv-electrical-services {
+  position: relative;
+  align-self: end;
+  justify-self: start;
+  display: inline-flex;
+  /* compact, not a big tile */
+  align-items: center;
+  gap: 10px;
+  padding: 12px 15px;
+  min-height: 44px;
+  width: auto;
+  /* <-- no fixed 250px */
+  background: #fff;
+  color: var(--brand-blue-lv);
+  border: 2px solid var(--brand-blue-lv);
+  cursor: pointer;
+  overflow: hidden;
+  transition: background .2s ease, color .2s ease, border-color .2s ease;
+  box-sizing: border-box;
+}
+
+/* default arrow */
+.arrow-lv-electrical-services {
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 1;
+  transition: transform .25s ease;
+}
+
+/* hidden label that slides in on hover */
+.svc-cta-lv-electrical-services::after {
+  /* content: "Learn More"; */
+  white-space: nowrap;
+  /* keep on one line */
+  font-weight: 800;
+  font-size: 14px;
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: opacity .25s ease, transform .25s ease;
+}
+
+/* hover: turn blue and show label */
+.svc-cta-lv-electrical-services:hover {
+  background: var(--brand-blue-lv);
+  color: #fff;
+  border-color: var(--brand-blue-lv);
+}
+
+.svc-cta-lv-electrical-services:hover .arrow-lv-electrical-services {
+  transform: translateX(4px);
+}
+
+.svc-cta-lv-electrical-services:hover::after {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* keyboard focus */
+.svc-cta-lv-electrical-services:focus-visible {
+  outline: 3px solid #ffb26b;
+  outline-offset: 2px;
+}
+
+/* optional: make it full-width on very small screens */
+@media (max-width: 560px) {
+  .svc-cta-lv-electrical-services {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* --- MODAL (gated docs) --- */
+.modal-csc-solar-system-csc-products {
+  position: fixed;
+  /* cover the whole viewport */
+  inset: 0;
+  display: none;
+  /* toggled via aria-hidden */
+  z-index: 9999;
+  /* sit above everything */
+}
+
+.modal-csc-solar-system-csc-products[aria-hidden="false"] {
+  display: block;
+}
+
+.modal-backdrop-csc-solar-system-csc-products {
+  position: absolute;
+  inset: 0;
+  /* dim + blur the entire page behind the modal */
+  background: rgba(11, 18, 32, .55);
+  backdrop-filter: blur(8px) saturate(105%);
+  -webkit-backdrop-filter: blur(8px) saturate(105%);
+  will-change: backdrop-filter;
+  z-index: 0;
+}
+
+.modal-dialog-csc-solar-system-csc-products {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(92vw, 520px);
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, .28);
+  padding: 18px;
+  z-index: 1;
+  /* above backdrop */
+}
+
+.modal-close-csc-solar-system-csc-products {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  border: 0;
+  background: transparent;
+  font-size: 22px;
+  cursor: pointer;
+  color: #6b7a8c;
+}
+
+/* lock page scroll when modal is open */
+body.modal-open {
+  overflow: hidden;
+}
+
+/* ===== Tokens (keep yours; add these) ===== */
+:root {
+  --container-w-lv: 1300px;
+  --bg-dark-lv: #0f1b2a;
+  --white-lv: #ffffff;
+  --ink-lv: #0b1220;
+  --muted-lv: #6b7a8c;
+  --cta-orange-lv: #e85b2a;
+  --brand-blue-lv: #234a85;
+  --shadow-soft-lv: 0 18px 46px rgba(0, 0, 0, .16);
+
+  /* control spacing + overlap */
+  --stats-pad-top: clamp(28px, 1vw, 56px);
+  --stats-pad-btm: clamp(16px, 1vw, 12px);
+  --overlap-lv: 10px;
+  /* how much the card rises into the stats */
+}
+
+/* shrink overlap for tablet; disable for phones */
+@media (max-width: 1024px) {
+  :root {
+    --overlap-lv: 72px;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --overlap-lv: 0px;
+  }
+}
+
+/* ====== Section wrapper ====== */
+.section-lv-electrical-get-in-touch {
+  background: var(--bg-dark-lv);
+  /* full-width behind stats */
+  padding: 0 0 clamp(18px, 1vw, 10px);
+}
+
+/* consistent container */
+.container-lv-electrical-get-in-touch {
+  width: min(82vw, 800px);
+  margin-inline: auto;
+}
+
+/* ====== Stats strip ====== */
+.stats-wrap-lv-electrical-get-in-touch {
+  background: #0b1220;
+  padding-top: var(--stats-pad-top);
+  /* add overlap space so card can rise into the band cleanly */
+  padding-bottom: calc(var(--stats-pad-btm) + var(--overlap-lv));
+  position: relative;
+  z-index: 1;
+}
+
+.stats-grid-lv-electrical-get-in-touch {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(12px, 2.8vw, 34px);
+  align-items: center;
+}
+
+.stat-lv-electrical-get-in-touch {
+  color: #e8edf7;
+  padding: clamp(8px, 1.4vw, 12px) 0;
+  border-right: 1px solid rgba(255, 255, 255, .12);
+}
+
+.stat-lv-electrical-get-in-touch:last-child {
+  border-right: 0;
+}
+
+.stat-num-lv-electrical-get-in-touch {
+  font-weight: 900;
+  font-size: clamp(28px, 4.6vw, 54px);
+  line-height: 1;
+}
+
+.stat-num-lv-electrical-get-in-touch::after {
+  content: attr(data-suffix);
+}
+
+.stat-label-lv-electrical-get-in-touch {
+  color: rgba(255, 255, 255, .8);
+  font-size: clamp(12px, 1.6vw, 14px);
+  margin-top: 6px;
+}
+
+/* ====== Overlapping card (inside the next container) ====== */
+.card-lv-electrical-get-in-touch {
+  position: relative;
+  z-index: 2;
+  /* above the stats band */
+  transform: translateY(calc(-1 * var(--overlap-lv)));
+  background: var(--white-lv);
+  border-radius: 12px;
+  box-shadow: var(--shadow-soft-lv);
+  display: grid;
+  grid-template-columns: 1.05fr 1.2fr;
+  overflow: hidden;
+  margin-bottom: clamp(14px, 1vw, 10px);
+  /* space after the card */
+}
+
+/* Media side */
+.media-lv-electrical-get-in-touch {
+  position: relative;
+  margin: 0;
+  background: #0d1726;
+  min-height: 260px;
+}
+
+.media-lv-electrical-get-in-touch img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.phone-badge-lv-electrical-get-in-touch {
+  position: absolute;
+  left: clamp(12px, 2vw, 18px);
+  bottom: clamp(12px, 2vw, 18px);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #1f5cb7;
+  color: #fff;
+  padding: 12px 18px;
+  box-shadow: 0 12px 30px rgba(4, 28, 64, .3);
+  border-radius: 12px;
+}
+
+.badge-icon-lv-electrical-get-in-touch {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .15);
+  font-size: 18px;
+}
+
+.badge-text-lv-electrical-get-in-touch {
+  font-size: 13px;
+  line-height: 1.25;
+}
+
+/* Content side */
+.content-lv-electrical-get-in-touch {
+  padding: clamp(18px, 4vw, 36px);
+}
+
+.eyebrow-lv-electrical-get-in-touch {
+  color: var(--brand-blue-lv);
+  font-weight: 800;
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.title-lv-electrical-get-in-touch {
+  margin: 6px 0 8px;
+  color: var(--ink-lv);
+  font-weight: 900;
+  line-height: 1.15;
+  font-size: clamp(22px, 3.6vw, 34px);
+}
+
+.sub-lv-electrical-get-in-touch {
+  color: var(--muted-lv);
+  margin: 0 0 16px;
+  font-size: clamp(14px, 1.8vw, 16px);
+  line-height: 1.7;
+}
+
+.btn-primary-lv-electrical-get-in-touch {
+  display: inline-block;
+  background: var(--cta-orange-lv);
+  color: #fff;
+  font-weight: 700;
+  border-radius: 8px;
+  padding: 12px 16px;
+  text-decoration: none;
+  transition: transform .18s ease, filter .18s ease;
+}
+
+.btn-primary-lv-electrical-get-in-touch:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.03);
+}
+
+/* ====== Reveal variants (same as before) ====== */
+.reveal-lv-electrical-get-in-touch {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .7s cubic-bezier(.2, .65, .2, 1),
+    transform .7s cubic-bezier(.2, .65, .2, 1);
+  will-change: opacity, transform;
+  transition-delay: var(--rv-delay, 0ms);
+}
+
+.reveal-left-lv-electrical-get-in-touch {
+  transform: translateX(-28px);
+}
+
+.reveal-right-lv-electrical-get-in-touch {
+  transform: translateX(28px);
+}
+
+.reveal-lv-electrical-get-in-touch.in-view {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-lv-electrical-get-in-touch {
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
+
+/* ====== Responsive grid ====== */
+@media (max-width: 1024px) {
+  .stats-grid-lv-electrical-get-in-touch {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .stat-lv-electrical-get-in-touch:nth-child(2) {
+    border-right: 0;
+  }
+
+  .card-lv-electrical-get-in-touch {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .stats-grid-lv-electrical-get-in-touch {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-lv-electrical-get-in-touch {
+    border-right: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, .12);
+  }
+
+  .stat-lv-electrical-get-in-touch:last-child {
+    border-bottom: 0;
+  }
+}
+
+/* ===== Visual split: dark band on top, white page below (like your 2nd image) */
+:root {
+  /* how tall the dark band appears before it switches to white */
+  --band-fill-lv: clamp(300px, 34vw, 420px);
+}
+
+/* Use a background gradient so the area below the stats is white */
+.section-lv-electrical-get-in-touch {
+  background: linear-gradient(to bottom,
+      #0b1220 0,
+      #0b1220 var(--band-fill-lv),
+      /* dark band height */
+      #ffffff var(--band-fill-lv),
+      /* white from here down */
+      #ffffff 100%);
+  padding-bottom: clamp(18px, 1vw, 1px);
+}
+
+/* Keep the stats band padding as you like, but add overlap space cleanly */
+.stats-wrap-lv-electrical-get-in-touch {
+  padding-top: var(--stats-pad-top);
+  padding-bottom: calc(var(--stats-pad-btm) + var(--overlap-lv));
+}
+
+/* Stronger/cleaner separator like screenshot 2 */
+.stats-grid-lv-electrical-get-in-touch {
+  align-items: center;
+}
+
+.stat-lv-electrical-get-in-touch {
+  border-right: 1px solid rgba(255, 255, 255, .18);
+}
+
+.stat-lv-electrical-get-in-touch:last-child {
+  border-right: 0;
+}
+
+/* ===== Card overlap + proportions to match 2nd image ===== */
+:root {
+  --overlap-lv: 96px;
+  /* slightly less dramatic than 120 so it sits like the mock */
+}
+
+/* Smaller radius and a bit stronger shadow like the reference */
+.card-lv-electrical-get-in-touch {
+  transform: translateY(calc(-1 * var(--overlap-lv)));
+  border-radius: 10px;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, .14);
+}
+
+/* Reduce right column padding so the white box doesn’t look too roomy */
+.content-lv-electrical-get-in-touch {
+  padding: clamp(16px, 3.3vw, 28px);
+}
+
+.title-lv-electrical-get-in-touch {
+  margin: 4px 0 10px;
+}
+
+.sub-lv-electrical-get-in-touch {
+  margin-bottom: 14px;
+}
+
+/* Make the image a touch taller so the left/right look balanced */
+.media-lv-electrical-get-in-touch {
+  min-height: clamp(260px, 34vw, 360px);
+}
+
+/* ===== Phone badge: make it tighter (less tall) ===== */
+.phone-badge-lv-electrical-get-in-touch {
+  padding: 8px 12px;
+  /* was 12px 18px */
+  gap: 8px;
+  border-radius: 10px;
+}
+
+.badge-icon-lv-electrical-get-in-touch {
+  width: 28px;
+  height: 28px;
+  /* was 34px */
+  font-size: 16px;
+}
+
+.badge-text-lv-electrical-get-in-touch {
+  font-size: 12px;
+  /* was 13px */
+  line-height: 1.2;
+}
+
+.badge-text-lv-electrical-get-in-touch strong {
+  font-size: 13px;
+}
+
+/* Button a bit smaller like the mock */
+.btn-primary-lv-electrical-get-in-touch {
+  padding: 10px 14px;
+  border-radius: 6px;
+}
+
+/* ===== Responsive adjustments ===== */
+@media (max-width: 1024px) {
+  :root {
+    --overlap-lv: 64px;
+  }
+
+  .media-lv-electrical-get-in-touch {
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --overlap-lv: 0px;
+  }
+
+  .media-lv-electrical-get-in-touch {
+    min-height: 220px;
+  }
+
+  .phone-badge-lv-electrical-get-in-touch {
+    left: 10px;
+    bottom: 10px;
+    padding: 7px 10px;
+  }
+}
+
+.svc-detail-layout {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  /* image | text */
+  gap: 20px;
+  /* small gap between image and text */
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  /* remove all outer padding */
+  background: transparent;
+}
+
+/* IMAGE CONTAINER */
+.svc-detail-figure {
+  margin: 0;
+  padding: 0;
+  /* remove internal padding */
+  border: none;
+  background: transparent;
+  /* no background box */
+  border-radius: 0;
+  /* sharp edges */
+  overflow: hidden;
+}
+
+/* IMAGE */
+.svc-detail-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  /* show full switchboard */
+  object-position: center;
+  border-radius: 0;
+}
+
+/* TEXT */
+.svc-detail-copy {
+  margin: 0;
+  padding: 0;
+}
+
+.svc-detail-copy h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: clamp(18px, 2vw, 22px);
+  font-weight: 800;
+  color: var(--ink-lv, #111827);
+}
+
+.svc-detail-copy p {
+  margin: 8px 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--muted-lv, #374151);
+}
+
+.svc-detail-copy h4 {
+  margin: 16px 0 8px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink-lv, #111827);
+}
+
+.svc-detail-copy ul {
+  margin: 8px 0 12px 18px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink-lv, #111827);
+}
+
+/* MOBILE STACK */
+@media (max-width: 900px) {
+  .svc-detail-layout {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .svc-detail-img {
+    max-height: 360px;
+  }
+}
+
+/* Remove top/bottom padding completely */
+.section-process-lv-electrical-process {
+  background: #fff;
+  /* remove extra top/bottom margin */
+}
+
+/* Ensure container sits flush with section edges */
+
+/* Tighten grid spacing */
+.grid-lv-electrical-process {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 20px;
+  /* smaller horizontal gap between image and steps */
+  align-items: start;
+  margin: 0;
+  /* no outer margin */
+  padding: 0;
+  /* remove any internal padding */
+}
+
+/* Optional: If the previous section has bottom margin, zero it out globally */
+section+section {
+  margin-top: 0;
+}
+
+/* ---------- Light theme with orange accents ---------- */
+:root {
+  --lv-ink: #0b1220;
+  --lv-muted: #5a6a7d;
+  --lv-bg: #ffffff;
+  /* white page background */
+  --lv-card-bg: #ffffff;
+  /* white card */
+  --lv-border: #e7edf5;
+  --lv-shadow: 0 14px 36px rgba(10, 20, 36, .10);
+  --lv-shadow-soft: 0 10px 24px rgba(10, 20, 36, .06);
+
+  --lv-orange: #f59e0b;
+  /* 500 */
+  --lv-orange-600: #ea580c;
+  /* hover */
+  --lv-orange-400: #fb923c;
+  /* gradient helper */
+  --lv-radius: 18px;
+}
+
+/* ---------- Section ---------- */
+.lv-electric-panel-project {
+  background: var(--lv-bg);
+  color: var(--lv-ink);
+  padding: clamp(40px, 6vw, 88px) 16px;
+}
+
+.lv-epp-container {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.lv-epp-header {
+  margin-bottom: 26px;
+}
+
+.lv-epp-kicker {
+  display: inline-block;
+  font: 600 12px/1.1 system-ui, Segoe UI, Roboto, Arial, sans-serif;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #914a05;
+  background: rgba(250, 176, 94, .18);
+  padding: 8px 12px;
+  border-radius: 999px;
+}
+
+.lv-epp-header h2 {
+  margin: 12px 0 0;
+  font: 700 clamp(22px, 3.5vw, 34px)/1.25 system-ui, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+/* ---------- Grid ---------- */
+.lv-epp-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  margin-top: 16px;
+}
+
+@media (max-width:1024px) {
+  .lv-epp-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width:640px) {
+  .lv-epp-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Card ---------- */
+.lv-epp-card {
+  background: var(--lv-card-bg);
+  border: 1px solid var(--lv-border);
+  border-radius: var(--lv-radius);
+  overflow: hidden;
+  box-shadow: var(--lv-shadow-soft);
+  transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+  opacity: 1;
+}
+
+.lv-epp-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--lv-shadow);
+  border-color: #ffd7aa;
+}
+
+.lv-epp-media {
+  position: relative;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+}
+
+.lv-epp-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.03);
+  transition: transform .5s ease;
+}
+
+.lv-epp-card:hover .lv-epp-media img {
+  transform: scale(1.06);
+}
+
+.lv-epp-year {
+  position: absolute;
+  inset: 14px auto auto 14px;
+  background: linear-gradient(135deg, var(--lv-orange), var(--lv-orange-400));
+  color: #fff;
+  font-weight: 700;
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .18);
+}
+
+.lv-epp-body {
+  padding: 18px 18px 20px;
+  color: var(--lv-ink);
+}
+
+.lv-epp-body h3 {
+  margin: 2px 0 8px;
+  font: 700 18px/1.35 system-ui, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+.lv-epp-client {
+  color: var(--lv-muted);
+  margin: 0 0 10px;
+  font-size: 14px;
+}
+
+.lv-epp-points {
+  margin: 0;
+  padding: 0 0 0 18px;
+  color: #253048;
+}
+
+.lv-epp-points li {
+  margin: 6px 0;
+}
+
+/* ---------- More button ---------- */
+.lv-epp-more-wrap {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 0 6px;
+}
+
+.lv-epp-more {
+  border: 0;
+  cursor: pointer;
+  color: #3a2002;
+  font-weight: 700;
+  padding: 12px 18px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #fed7aa, #fdba74);
+  box-shadow: 0 10px 24px rgba(234, 88, 12, .22);
+  transition: transform .25s ease, box-shadow .25s ease, filter .2s ease;
+}
+
+.lv-epp-more:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(234, 88, 12, .30);
+  background: linear-gradient(135deg, #fdba74, #fb923c);
+}
+
+.lv-epp-more:active {
+  transform: translateY(0);
+}
+
+/* ---------- Reveal animations ---------- */
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+}
+
+.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+  transition: transform .7s cubic-bezier(.2, .6, .2, 1), opacity .7s;
+}
+
+/* hide later cards until 'More Projects' is clicked */
+.is-hidden {
+  display: none;
+}
+
+/* =======================================================================
+   Portrait images for project cards (vertical rectangle)
+   -----------------------------------------------------------------------
+   Recommended export sizes (3:4 aspect ratio):
+     • Standard: 900 × 1200 px
+     • Hi-res/retina: 1200 × 1600 px (or 1500 × 2000 px)
+   Alternative (2:3 aspect ratio) if you prefer taller images:
+     • Standard: 1000 × 1500 px
+     • Hi-res:   1400 × 2100 px
+   Drop this block AFTER the previous project CSS to override 16:9.
+   ======================================================================= */
+
+/* Default portrait: 3:4 */
+.lv-electric-panel-project .lv-epp-media {
+  aspect-ratio: 10/11;
+  /* vertical rectangle */
+  max-height: 360px;
+  /* keeps cards consistent on large screens */
+  overflow: hidden;
+}
+
+.lv-electric-panel-project .lv-epp-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* fills the frame without distortion */
+  object-position: center;
+  /* center crop for portraits */
+  display: block;
+  transform: none;
+  /* neutralize any previous scale if applied */
+}
+
+/* Slightly taller cap on very wide screens */
+@media (min-width: 1200px) {
+  .lv-electric-panel-project .lv-epp-media {
+    max-height: 640px;
+  }
+}
+
+/* Optional: add class "is-23" on a card to use a 2:3 portrait */
+.lv-electric-panel-project .lv-epp-card.is-23 .lv-epp-media {
+  aspect-ratio: 2 / 3;
+}
+
+/* Keep the year pill positioned nicely on taller images */
+.lv-electric-panel-project .lv-epp-year {
+  inset: 12px auto auto 12px;
+}
+
+
+/* Container for the entire section */
+.-gemini-mission-section {
+  font-family: Arial, sans-serif;
+  max-width: 1100px;
+  margin: 0 auto;
+  /* padding: 20px; */
+}
+
+/* Tab buttons container */
+.-gemini-tabs-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  /* background-color: #f0f0f0; */
+  border-radius: 50px;
+  padding: 5px;
+  /* margin-bottom: 30px; */
+  width: fit-content;
+}
+
+/* Individual tab button styling */
+.-gemini-tab {
+  background-color: transparent;
+  border: none;
+  padding: 12px 24px;
+  margin: 0 4px;
+  border-radius: 50px;
+  font-size: 16px;
+  cursor: pointer;
+  color: #333;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+/* Active (selected) tab state */
+.-gemini-tab.active {
+  background-color: #e0e0e0;
+  color: #000;
+  font-weight: bold;
+}
+
+/* Main content wrapper */
+.-gemini-content-wrapper {
+  overflow: hidden;
+  position: relative;
+}
+
+/* Individual content blocks (hidden by default) */
+.-gemini-content {
+  display: none;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+/* Active content block (visible) */
+.-gemini-content.active {
+  display: flex;
+  flex-direction: column;
+  /* Default for smaller screens */
+  gap: 40px;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Layout for wider screens */
+@media (min-width: 768px) {
+  .-gemini-content.active {
+    flex-direction: row;
+    /* Side-by-side on desktop */
+  }
+}
+
+/* Text and image containers */
+.-gemini-text-content,
+.-gemini-image-content {
+  flex: 1;
+}
+
+.-gemini-text-content h2 {
+  font-size: 48px;
+  color: #0d2847;
+  margin-bottom: 20px;
+}
+
+.-gemini-text-content p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #555;
+  color: var(--muted-meet-ieng-about);
+}
+
+.-gemini-image-content img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+/* Individual content blocks (hidden by default) */
+.-gemini-content {
+  display: none;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  align-items: center;
+  /* Vertically align items when side-by-side */
+}
+
+/* Active content block (visible) */
+.-gemini-content.active {
+  display: flex;
+  flex-direction: column;
+  /* Default for smaller screens */
+  gap: 40px;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Layout for wider screens */
+@media (min-width: 768px) {
+  .-gemini-content.active {
+    flex-direction: row;
+    /* Side-by-side on desktop */
+  }
+}
+
+/* Text and image containers */
+.-gemini-text-content {
+  flex: 1;
+  /* Allow text content to take available space */
+}
+
+.-gemini-image-content {
+  flex: 1;
+  /* Allow image content to take available space */
+  display: flex;
+  /* Use flexbox to center the image */
+  justify-content: center;
+  /* Center horizontally */
+  align-items: center;
+  /* Center vertically */
+  padding: 20px;
+  /* Add some padding around the image if desired */
+}
+
+
+.-gemini-text-content h2 {
+  font-size: 48px;
+  color: #0d2847;
+  margin-bottom: 20px;
+}
+
+.-gemini-text-content p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #555;
+}
+
+.-gemini-image-content img {
+  /* --- MODIFIED SECTION --- */
+  width: 100%;
+  /* Keep it responsive within its constrained size */
+  /* Adjust this value to control the maximum image width */
+
+  height: 300px;
+  max-width: auto;
+  display: block;
+  border-radius: 8px;
+  /* ---------------------- */
+}
+
+/* */
+
+/* --- Thermal Methods List Styles --- */
+
+/* Style for the container to manage spacing relative to the hero section */
+.additional-info-thermal {
+    margin-top: 15px; /* Space below the lead paragraph */
+}
+
+/* Style for the unordered list */
+.thermal-methods-list {
+    list-style: none; /* Remove default bullets */
+    padding-left: 0; /* Remove default padding */
+    margin-top: 5px; /* Close space with the 'Heat Transfer Methods:' header */
+    display: flex; /* Arrange list items horizontally */
+    gap: 15px; /* Spacing between the list items */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+/* Style for each list item (the method names) */
+.thermal-methods-list li {
+    font-size: 0.95rem; /* Slightly larger/more prominent than small-text-solar-system */
+    font-weight: 600; /* Bold the methods */
+    color: #111d48; /* Use the primary dark text color */
+    background-color: #f0f0f5; /* Light background for a pill/tag look */
+    padding: 4px 10px;
+    border-radius: 6px;
+    border: 1px solid #e0e0e5; /* Subtle border */
+    transition: background-color 0.2s;
+}
+
+/* Optional hover effect for interactivity */
+.thermal-methods-list li:hover {
+    background-color: #e3e3e8;
+    cursor: default;
+}
+
+/* Ensure the 'small-text-solar-system' paragraph maintains its style */
+.small-text-solar-system {
+    font-size: 0.85rem;
+    color: #6b6f78;
+    margin: 0;
+}
+
+/* solutions  */
+
+/* ================== SOLUTIONS ================== */
+.section-solutions-solar-system-solution {
+  background: var(--bg-solar);
+  padding: clamp(48px, 2vw, 40px) 0;
+}
+
+.solutions-head-solar-system-solution {
+  display: grid;
+  grid-template-columns: 2fr auto;
+  gap: 14px;
+  align-items: end;
+  margin-bottom: clamp(18px, 1vw, 28px);
+}
+
+.solutions-kicker-solar-system-solution {
+  color: var(--teal-700-solar);
+  font-weight: 800;
+  letter-spacing: .4px;
+  margin: 0 0 6px;
+}
+
+.solutions-title-solar-system-solution {
+  margin: 0;
+  color: var(--ink-solar);
+  font-weight: 800;
+  font-size: clamp(22px, 3.6vw, 34px);
+}
+
+.solutions-viewall-btn-solar-system-solution {
+  justify-self: end;
+  padding: 10px 14px;
+  font-weight: 600;
+  border: 2px solid var(--teal-700-solar);
+  color: var(--teal-700-solar);
+  background: transparent;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background .2s ease, color .2s ease, transform .2s ease;
+}
+
+.solutions-viewall-btn-solar-system-solution:hover {
+  background: var(--teal-700-solar);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+/* collapse control for the grid (keeps your class names) */
+.is-collapsed-solar-system-solution .extra-card-solar-system-solution {
+  display: none;
+}
+
+/* small spacing for the intro under the headline */
+.solutions-intro-solar-system-solution {
+  margin-top: 0.75rem;
+  display: grid;
+  gap: .75rem;
+}
+
+/* tidy bullets inside cards */
+.card-points-solar-system-solution {
+  margin: .5rem 0 0 1.1rem;
+  padding: 0;
+  line-height: 1.5;
+}
+
+/* highlights (after the 8 points) */
+.lv-highlights-solar-system-solution {
+  margin-top: 2rem;
+  border: 1px solid rgba(0, 0, 0, .08);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  background: #fff;
+}
+
+.lv-highlights-solar-system-solution h3 {
+  margin: 0 0 .5rem 0;
+  color: #0b1220;
+}
+
+.lv-highlight-list {
+  display: grid;
+  gap: .5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lv-highlight-item {
+  display: flex;
+  align-items: flex-start;
+  gap: .5rem;
+}
+
+.lv-highlight-item i {
+  font-size: 1.1rem;
+  line-height: 1.2;
+  margin-top: 2px;
+  color: #0d2847;
+
+}
+
+/* Grid */
+.grid-solutions-solar-system-solution {
+  display: grid;
+  grid-template-columns: repeat(2, 2fr);
+  gap: clamp(14px, 3vw, 24px);
+}
+
+/* Show only first row by default (3 cards) */
+.grid-solutions-solar-system-solution.is-collapsed-solar-system-solution .extra-card-solar-system-solution {
+  display: none;
+}
+
+/* Card */
+.card-solar-system-solution {
+  background: #fff;
+  border: 1px solid rgba(21, 94, 117, .18);
+  /* cyan-ish border, very light */
+  border-radius: 14px;
+  padding: clamp(14px, 2.6vw, 18px);
+  box-shadow: var(--shadow-soft-solar);
+  display: flex;
+  flex-direction: column;
+  min-height: 220px;
+  transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+
+.card-solar-system-solution:hover {
+  border-color: var(--teal-700-solar);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, .08);
+}
+
+.card-icon-solar-system-solution {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background: linear-gradient(135deg, var(--teal-700-solar), var(--cyan-800-solar));
+  margin-bottom: 10px;
+  box-shadow: 0 10px 22px rgba(15, 118, 110, .25);
+}
+
+.card-icon-solar-system-solution i {
+  font-size: 22px;
+  line-height: 1;
+}
+
+.card-title-solar-system-solution {
+  margin: 0 0 6px;
+  font-size: clamp(16px, 2.2vw, 18px);
+  font-weight: 800;
+  color: var(--ink-solar);
+}
+
+.card-text-solar-system-solution {
+  margin: 0 0 12px;
+  color: var(--muted-solar);
+  line-height: 1.65;
+  font-size: clamp(13.5px, 1.9vw, 15px);
+}
+
+/* Link CTA pinned to bottom */
+.card-link-solar-system-solution {
+  margin-top: auto;
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 2px solid var(--cyan-800-solar);
+  color: var(--cyan-800-solar);
+  text-decoration: none;
+  font-weight: 600;
+  transition: background .2s ease, color .2s ease, transform .2s ease;
+}
+
+.card-link-solar-system-solution:hover {
+  background: var(--cyan-800-solar);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+/* Reveal directions (slow) */
+.reveal-left-solar-system-solution,
+.reveal-right-solar-system-solution,
+.reveal-top-solar-system-solution,
+.reveal-bottom-solar-system-solution {
+  opacity: 0;
+  transform: translate3d(0, 0, 0);
+  transition: opacity 1.05s cubic-bezier(.2, .65, .2, 1),
+    transform 1.05s cubic-bezier(.2, .65, .2, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-left-solar-system-solution {
+  transform: translateX(-26px);
+}
+
+.reveal-right-solar-system-solution {
+  transform: translateX(26px);
+}
+
+.reveal-top-solar-system-solution {
+  transform: translateY(-26px);
+}
+
+.reveal-bottom-solar-system-solution {
+  transform: translateY(26px);
+}
+
+.in-view-solar-system.reveal-left-solar-system-solution,
+.in-view-solar-system.reveal-right-solar-system-solution,
+.in-view-solar-system.reveal-top-solar-system-solution,
+.in-view-solar-system.reveal-bottom-solar-system-solution {
+  opacity: 1;
+  transform: none;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+
+  .reveal-left-solar-system-solution,
+  .reveal-right-solar-system-solution,
+  .reveal-top-solar-system-solution,
+  .reveal-bottom-solar-system-solution {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .grid-solutions-solar-system-solution {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .solutions-head-solar-system-solution {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .solutions-viewall-btn-solar-system-solution {
+    justify-self: start;
+  }
+}
+
+@media (max-width: 560px) {
+  .grid-solutions-solar-system-solution {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Container for the entire section */
+.-gemini-mission-section {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Tab buttons container */
+.-gemini-tabs-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 50px;
+  padding: 5px;
+  width: fit-content;
+}
+
+/* Individual tab button styling */
+.-gemini-tab {
+  background-color: transparent;
+  border: none;
+  padding: 12px 24px;
+  margin: 0 4px;
+  border-radius: 50px;
+  font-size: 16px;
+  cursor: pointer;
+  color: #333;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+/* Active (selected) tab state */
+.-gemini-tab.active {
+  background-color: #e0e0e0;
+  color: #000;
+  font-weight: 600;
+}
+
+/* Main content wrapper */
+.-gemini-content-wrapper {
+  overflow: hidden;
+  position: relative;
+}
+
+/* Content blocks (default hidden) */
+.-gemini-content {
+  display: none;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  align-items: center;
+}
+
+/* Active content block (visible) */
+.-gemini-content.active {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (min-width: 768px) {
+  .-gemini-content.active {
+    flex-direction: row;
+  }
+}
+
+/* Text + image columns */
+.-gemini-text-content,
+.-gemini-image-content {
+  flex: 1;
+}
+
+/* Headings in this section – keep same style as about section title style */
+.-gemini-text-content h2 {
+  font-size: 48px;
+  color: #0d2847;
+  margin-bottom: 20px;
+}
+
+/* UPDATED: paragraph style to match "about us" paragraph */
+.-gemini-text-content p {
+  font: 400 15px/1.7 ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #6a7a89;
+  margin: 0;
+}
+
+/* Image block */
+.-gemini-image-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.-gemini-image-content img {
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* show only 2 cards when collapsed */
+#solutions-grid-solar-system-solution.is-collapsed-solar-system-solution .card-solar-system-solution:nth-of-type(3) {
+  display: none;
+}
+
+/* center the "View LV Switchboards" button */
+.solutions-viewall-btn-solar-system-solution {
+  justify-self: center;
+  margin-top: 1.25rem;
+}
+
+/* make list items real bullets inside cards */
+.card-points-solar-system-solution {
+  list-style: disc;
+  padding-left: 1.3rem;
+}
+
+.container-lv-electrical-process {
+  width: 100%;
+  max-width: 1100px;
+  margin-inline: auto;
+  /* padding-inline: clamp(16px, 1vw, 28px); */
+}
+/* Style for all LI elements within the detail view, set to the requested muted gray (#6b7a8c) */
+.svc-detail-lv-electrical-services ul li {
+    color: #6b7a8c; /* Ensures color is set to #6b7a8c */
+    line-height: 1.6;
+}
+/* === Fix color for JS-injected list content in the details panel === */
+/* Put this AFTER your existing CSS so it overrides earlier rules */
+
+.svc-detail-lv-electrical-services .svc-detail-copy ul,
+.svc-detail-lv-electrical-services .svc-detail-copy ol,
+.svc-detail-lv-electrical-services .svc-detail-copy ul li,
+.svc-detail-lv-electrical-services .svc-detail-copy ol li{
+  color:#6b7a8c;   /* same as --muted-lv */
+}
+
+/* Optional: make the list markers match too (supported in modern browsers) */
+.svc-detail-lv-electrical-services .svc-detail-copy ul li::marker,
+.svc-detail-lv-electrical-services .svc-detail-copy ol li::marker{
+  color:#6b7a8c;
+}
+
+/* Keep emphasis inside list items darker for contrast */
+.svc-detail-lv-electrical-services .svc-detail-copy li strong{
+  color:var(--ink-lv);
+}
+/* --- Card image block --- */
+.card-media-solar-system-solution{
+  width: 100%;
+  border: 1px solid rgba(0,0,0,.08);
+  background: #f6f8fb;
+  overflow: hidden;
+  margin: 0 0 10px 0;
+  border-radius: 8px;
+}
+
+.card-media-solar-system-solution img{
+  display:block;
+  width:100%;
+  height:100%;
+  aspect-ratio: 16/10;   /* tidy, consistent card tops */
+  object-fit: cover;
+  transform: translateZ(0);
+}
+
+/* --- Collapse behaviour: show first 3, hide the rest --- */
+#solutions-grid-solar-system-solution.is-collapsed-solar-system-solution
+  .card-solar-system-solution:nth-of-type(n+4){
+  display:none;
+}
+
+/* (Already have bullet styling, keep consistent) */
+.card-points-solar-system-solution{
+  list-style: disc;
+  padding-left: 1.25rem;
+}
+/* Card body text & bullets */
+.section-solutions-solar-system-solution
+  .card-text-solar-system-solution,
+.section-solutions-solar-system-solution
+  .card-points-solar-system-solution,
+.section-solutions-solar-system-solution
+  .card-points-solar-system-solution li {
+  color: #6b7a8c;
+}
+
+/* Preserve heading color (uses your existing token if present) */
+.section-solutions-solar-system-solution
+  .card-title-solar-system-solution,
+.section-solutions-solar-system-solution
+  .card-solar-system-solution h4 {
+  color: var(--ink-lv, #0b1220);
+}
+
+/* ---------- Applications / Highlights card ---------- */
+.lv-highlights-solar-system-solution{
+  margin-top: 22px;
+  padding: clamp(16px,2.2vw,24px);
+  background: linear-gradient(180deg,#fff,var(--wwb-soft, #f6f8fb));
+  border: 1px solid var(--wwb-ring, rgba(14,27,43,.12));
+  border-radius: 16px;
+  box-shadow: var(--wwb-shadow, 0 18px 44px rgba(2,8,23,.10));
+}
+
+/* Title keeps the same heading color token you already use */
+.lv-highlights-solar-system-solution h3{
+  margin: 0 0 10px;
+  color: var(--ink-lv, #0b1220);
+  font-weight: 900;
+}
+
+/* List layout */
+.lv-highlight-list{
+  list-style: none;
+  margin: 0;
+  padding: 6px 0 0;
+  display: grid;
+  gap: clamp(10px,1.2vw,14px);
+}
+
+/* Each row: icon badge + copy */
+.lv-highlight-item{
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  align-items: flex-start;
+  column-gap: 12px;
+  line-height: 1.65;
+  color: #6b7a8c;                /* <-- requested body color */
+  font-size: clamp(14px, 1.4vw, 18px);
+}
+
+/* Gradient badge for Remix icon */
+.lv-highlight-item i{
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--wwb-primary, #d34300), var(--wwb-primary2, #751515));
+  color: #fff;                   /* icon glyph */
+  box-shadow: 0 6px 14px rgba(211,67,0,.18);
+  margin-top: 2px;               /* optical align with text baseline */
+  font-size: 14px;
+}
+
+/* Optional: subtle separators for long lists */
+.lv-highlight-item + .lv-highlight-item{
+  border-top: 1px dashed var(--wwb-ring, rgba(14,27,43,.12));
+  padding-top: 10px;
+}
+
+/* Responsive polish */
+@media (max-width: 560px){
+  .lv-highlight-item{
+    grid-template-columns: 26px 1fr;
+    font-size: 15px;
+  }
+}
+
