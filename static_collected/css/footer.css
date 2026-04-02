@@ -1,0 +1,199 @@
+/* ================= FOOTER ================= */
+
+.footer {
+  background-color: #000;
+  color: #fff;
+  padding: 40px 20px 24px;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Main container */
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;              /* space between the 3 columns */
+}
+
+/* shared text style */
+.footer p,
+.footer a {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* -------- LEFT: heading + logo -------- */
+.footer-heading {
+  flex: 1 1 0;
+  min-width: 260px;
+  margin-bottom: 16px;
+}
+
+.footer-heading h2,
+.footer-heading p {
+  margin: 0 0 10px;
+  font-size: clamp(22px, 2.4vw, 28px);
+  font-weight: 700;
+}
+
+/* logo */
+.footer .nav__logo1 {
+  display: block;
+  width: clamp(130px, 16vw, 180px);
+  height: auto;
+  margin-top: 12px;
+  object-fit: contain;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,.35));
+  user-select: none;
+}
+
+/* -------- MIDDLE: contact block -------- */
+.footer-left {
+  flex: 1 1 0;
+  min-width: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;   /* left aligned */
+  text-align: left;
+  margin-bottom: 16px;
+}
+
+.footer-left p {
+  margin: 4px 0;
+}
+
+.footer-left a {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* -------- RIGHT: links -------- */
+.footer-links {
+  flex: 1 1 0;
+  min-width: 180px;
+  display: flex;
+  justify-content: flex-end;   /* block stays on the right */
+  margin-bottom: 16px;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;            /* text inside left aligned */
+}
+
+.footer-links li {
+  margin: 4px 0;
+}
+
+.footer-links a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* -------- BOTTOM ROW -------- */
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  flex-wrap: wrap;
+  margin-top: 26px;
+  border-top: 1px solid #333;
+  padding-top: 12px;
+}
+
+.social-icons a {
+  color: #fff;
+  margin-right: 12px;
+  font-size: 16px;
+}
+
+.copyright {
+  font-size: 13px;
+}
+
+/* ================= MOBILE / TABLET ================= */
+@media (max-width: 768px) {
+  .footer {
+    padding: 24px 16px 18px;
+  }
+
+  .footer-container {
+    max-width: none;
+    margin: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .footer-heading,
+  .footer-left,
+  .footer-links {
+    min-width: 0;
+    width: 100%;
+    text-align: left;
+  }
+
+  .footer-left {
+    align-items: flex-start;
+  }
+
+  .footer-links {
+    justify-content: flex-start;
+  }
+
+  .footer-links ul {
+    text-align: left;
+  }
+
+  .footer .nav__logo1 {
+    width: clamp(130px, 40vw, 180px);
+    margin-top: 8px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
+/* === Desktop: make 3 equal columns & stronger text === */
+
+.footer-left,
+.footer-links {
+  flex: 0 0 20%;        /* equal width for left / middle / right */
+}
+.footer-heading{
+  flex: 0 0 20%; 
+}
+
+.footer-left p,
+.footer-left a,
+.footer-links a {
+  font-size: 16px;          /* bigger text */
+  font-weight: 600;         /* make it bold-ish */
+}
+
+/* Keep nav text left-aligned inside the right column */
+.footer-links ul {
+  text-align: left;
+}
+
+/* === Mobile: stack full-width again === */
+@media (max-width: 768px) {
+  .footer-heading,
+  .footer-left,
+  .footer-links {
+    padding-left:50px;
+    padding-right: 50px;
+    flex: 0 0 100%;
+  }
+}

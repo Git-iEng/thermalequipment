@@ -24,6 +24,248 @@
   <link rel="icon" href="{% static 'images/logo1.png' %}">
   <link rel="stylesheet" href="{% static 'css/footer.css' %}">
   <script defer src="{% static 'js/main.js' %}"></script>
+  <style>:root{
+  --lv-ink:#0b1220;
+  --lv-muted:#5a6a7d;
+  --lv-bg:#ffffff;
+  --lv-card-bg:#ffffff;
+  --lv-border:#e7edf5;
+  --lv-shadow:0 14px 36px rgba(10,20,36,0.10);
+  --lv-shadow-soft:0 10px 24px rgba(10,20,36,0.06);
+  --lv-orange:#155e75;
+  --lv-orange-600:#0f766e;
+  --lv-orange-400:#155e75;
+  --lv-radius:18px;
+}
+
+/* ---------- Section ---------- */
+.generators-1-project{
+  background: var(--lv-bg);
+  color: var(--lv-ink);
+  padding: clamp(40px, 1vw, 20px) 16px;
+}
+
+.generators-container{
+  max-width:1180px;
+  margin:0 auto;
+}
+
+.generators-header{
+  margin-bottom:26px;
+}
+
+.generators-kicker{
+  display:inline-block;
+  font:600 12px/1.1 system-ui, Segoe UI, Roboto, Arial, sans-serif;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:#06607b;
+  background:#155f7537;
+  padding:8px 12px;
+  border-radius:999px;
+}
+
+.generators-header h2{
+  margin:12px 0 0;
+  font:700 clamp(22px,3.5vw,34px)/1.25 system-ui, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+/* ---------- Grid ---------- */
+.generators-grid{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0,1fr));
+  gap:22px;
+  margin-top:16px;
+  justify-content:center;
+}
+
+.generators-grid .generators-card{
+  grid-column:2;
+  max-width:380px;
+  width:100%;
+}
+
+@media (max-width:1024px){
+  .generators-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .generators-grid .generators-card{
+    grid-column:1 / -1;
+    justify-self:center;
+    max-width:380px;
+    width:100%;
+  }
+}
+
+@media (max-width:640px){
+  .generators-grid{
+    grid-template-columns:1fr;
+  }
+
+  .generators-grid .generators-card{
+    grid-column:auto;
+    max-width:100%;
+    width:100%;
+  }
+}
+
+/* ---------- Card ---------- */
+.generators-card{
+  background:var(--lv-card-bg);
+  border:1px solid var(--lv-border);
+  border-radius:var(--lv-radius);
+  overflow:hidden;
+  box-shadow:var(--lv-shadow-soft);
+  transition:transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+  opacity:1;
+}
+
+.generators-card:hover{
+  transform:translateY(-6px);
+  box-shadow:var(--lv-shadow);
+  border-color:#98e7ff;
+}
+
+.generators-media{
+  position:relative;
+  aspect-ratio:16/9;
+  overflow:hidden;
+}
+
+.generators-media img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  transform:scale(1.03);
+  transition:transform .5s ease;
+}
+
+.generators-card:hover .generators-media img{
+  transform:scale(1.06);
+}
+
+.generators-year{
+  position:absolute;
+  inset:14px auto auto 14px;
+  background:linear-gradient(135deg, var(--lv-orange), var(--lv-orange-400));
+  color:#fff;
+  font-weight:700;
+  font-size:12px;
+  padding:6px 10px;
+  border-radius:999px;
+  box-shadow:0 6px 18px rgba(0,0,0,0.18);
+}
+
+.generators-body{
+  padding:18px 18px 20px;
+  color:var(--lv-ink);
+}
+
+.generators-body h3{
+  margin:2px 0 8px;
+  font:700 18px/1.35 system-ui, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+.generators-client{
+  color:var(--lv-muted);
+  margin:0 0 10px;
+  font-size:14px;
+}
+
+.generators-points{
+  margin:0;
+  padding:0 0 0 18px;
+  color:#253048;
+}
+
+.generators-points li{
+  margin:6px 0;
+}
+
+/* ---------- More button ---------- */
+.generators-more-wrap{
+  grid-column:1 / -1;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:8px 0 6px;
+}
+
+.generators-more{
+  border:0;
+  cursor:pointer;
+  color:#023e50;
+  font-weight:700;
+  padding:12px 18px;
+  border-radius:12px;
+  background:linear-gradient(135deg, #cce9f2, #69d3f3);
+  box-shadow:0 10px 24px #90e4fe68;
+  transition:transform .25s ease, box-shadow .25s ease, filter .2s ease;
+}
+
+.generators-more:hover{
+  transform:translateY(-2px);
+  box-shadow:0 14px 28px #149cc69d;
+  background:linear-gradient(135deg, #42d3ff, #25ccff);
+}
+
+.generators-more:active{
+  transform:translateY(0);
+}
+
+/* ---------- Reveal animations ---------- */
+.reveal-left{
+  opacity:0;
+  transform:translateX(-40px);
+}
+
+.reveal-right{
+  opacity:0;
+  transform:translateX(40px);
+}
+
+.is-visible{
+  opacity:1;
+  transform:translateX(0);
+  transition:transform .7s cubic-bezier(.2,.6,.2,1), opacity .7s;
+}
+
+/* hide later cards until More Projects is clicked */
+.is-hidden{
+  display:none;
+}
+
+/* ---------- Portrait image override ---------- */
+.generators-1-project .generators-media{
+  aspect-ratio:10/11;
+  max-height:360px;
+  overflow:hidden;
+}
+
+.generators-1-project .generators-media img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  display:block;
+  transform:none;
+}
+
+@media (min-width:1200px){
+  .generators-1-project .generators-media{
+    max-height:640px;
+  }
+}
+
+.generators-1-project .generators-card.is-23 .generators-media{
+  aspect-ratio:2/3;
+}
+
+.generators-1-project .generators-year{
+  inset:12px auto auto 12px;
+}</style>
 </head>
 <body>
   {% include 'header.html' %}
@@ -37,16 +279,29 @@
           Heating <span class="accent-solar-system">Solutions</span>
         </h1>
         <p class="hero-sub-solar-system">
-          A heating element converts electrical energy into heat (Joule heating). We supply thermal devices used in
-          enclosures and switchboards to prevent damage from condensation.
+          We provide comprehensive industrial heating solutions and thermal engineering systems designed to meet the evolving demands of modern industries. Our expertise includes electric industrial heaters, industrial furnaces, ovens, and process heating systems, ensuring reliable and energy-efficient performance across applications.<br>
+
+        </p>
+        <p class="hero-sub-solar-system">
+          Our product portfolio covers a wide range of industrial heating equipment, including cartridge heaters, immersion heaters, tubular heaters, infrared heaters, and ceramic heaters, along with high-temperature furnaces and heat treatment systems. These solutions are engineered to support critical processes such as thermal processing, drying, curing, melting, and heat treatment.
+
+        </p>
+        <p class="hero-sub-solar-system">
+          We deliver advanced process heating solutions with precise temperature control systems, integrating PID controllers and industrial automation to ensure consistent and accurate performance. Our solutions are widely used across manufacturing, oil & gas, power plants, food processing, and pharmaceutical industries.
+
+        </p>
+        <p class="hero-sub-solar-system">
+          With a strong focus on custom industrial heating systems, we design solutions tailored to specific load requirements, operating conditions, and application needs. Our engineering approach ensures efficient heat transfer, reduced energy consumption, and optimized thermal performance.
+
+        </p>
+        <p class="hero-sub-solar-system">
+          As a trusted provider of energy-efficient heating systems, we are committed to delivering high-performance, durable, and cost-effective thermal solutions. From design and engineering to supply, installation, and after-sales support, we offer end-to-end services that enhance productivity, improve process efficiency, and support sustainable industrial operations.
+
         </p>
 
-        <div class="hero-cta-solar-system">
-          <a href="#solutions" class="btn-primary-solar-system">View Thermal Solutions</a>
-          <a href="#contact" class="btn-ghost-solar-system js-open-demo">Get a Quote</a>
-        </div>
+        
 
-        <div class="additional-info-thermal">
+        {% comment %} <div class="additional-info-thermal">
           <p class="small-text-solar-system">
             Heat Transfer Methods:
           </p>
@@ -55,12 +310,17 @@
             <li>Convection</li>
             <li>Radiation</li>
           </ul>
-        </div>
+        </div> {% endcomment %}
       </div>
 
       <div class="hero-right-solar-system">
-        <img src="{% static 'images/thermal_heating_element.webp' %}"
+        <img src="{% static 'images/1.avif' %}"
           alt="Industrial Heating Element or Switchboard Heater" class="hero-img-solar-system">
+
+        <div class="hero-cta-solar-system">
+          <a href="#solutions" class="btn-primary-solar-system">View Thermal Solutions</a>
+          <a href="#contact" class="btn-ghost-solar-system js-open-demo">Get a Quote</a>
+        </div>
       </div>
     </div>
 
@@ -73,7 +333,7 @@
       <div class="grid-lv-electrical-about-">
         <!-- Image -->
         <figure class="media-lv-electrical-about- reveal-lv-electrical-about- reveal-left-lv-electrical-services">
-          <img src="{% static 'images/heating_elements.avif' %}" alt="High-Performance Thermal Heating Elements"
+          <img src="{% static 'images/2.avif' %}" alt="High-Performance Thermal Heating Elements"
             class="img-lv-electrical-about-" />
         </figure>
 
@@ -482,7 +742,7 @@
         <!-- Image side -->
         <figure class="media-lv-electrical-get-in-touch reveal-lv-electrical-get-in-touch" data-delay="100">
           <!-- Replace the src with your static image -->
-          <img src="{% static 'images/contact.jpg' %}" alt="Electrician at work">
+          <img src="{% static 'images/3.avif' %}" alt="Electrician at work">
           <figcaption class="phone-badge-lv-electrical-get-in-touch">
             <span class="badge-icon-lv-electrical-get-in-touch">📞</span>
             <span class="badge-text-lv-electrical-get-in-touch">Office Number<br><strong>+61 (02) 8318
@@ -516,7 +776,7 @@
             Thermal Heating Process
           </a>
           <figure class="media-lv-electrical-process">
-            <img src="../static/images/process_thermal.avif" alt="Engineer inspecting a heater element"
+            <img src="../static/images/process.avif" alt="Engineer inspecting a heater element"
               class="img-lv-electrical-process reveal-right-lv-electrical-services">
           </figure>
 
@@ -555,7 +815,7 @@
             <!-- Step 2: Design & Specification -->
             <li class="timeline-item-lv-electrical-process reveal-right-lv-electrical-services">
               <div class="step-icon-lv-electrical-process">
-                <img src="../static/images/icons/planning.png" alt="Engineering Design Icon">
+                <img src="{% static 'images/icons/inspection.png' %}" alt="Engineering Design Icon">
               </div>
               <div class="step-content-lv-electrical-process">
                 <h3 class="step-title-lv-electrical-process">2. Engineering & Specification</h3>
@@ -569,7 +829,7 @@
             <!-- Step 3: Manufacturing -->
             <li class="timeline-item-lv-electrical-process reveal-right-lv-electrical-services">
               <div class="step-icon-lv-electrical-process">
-                <img src="../static/images/icons/manufacturing.png" alt="Manufacturing Icon">
+                <img src="../static/images/icons/consultation.png" alt="Manufacturing Icon">
               </div>
               <div class="step-content-lv-electrical-process">
                 <h3 class="step-title-lv-electrical-process">3. Precision Manufacturing</h3>
@@ -597,7 +857,7 @@
             <!-- Step 5: Delivery & Support -->
             <li class="timeline-item-lv-electrical-process reveal-right-lv-electrical-services">
               <div class="step-icon-lv-electrical-process">
-                <img src="../static/images/icons/support.png" alt="Delivery and Support Icon">
+                <img src="../static/images/icons/inspection.png" alt="Delivery and Support Icon">
               </div>
               <div class="step-content-lv-electrical-process">
                 <h3 class="step-title-lv-electrical-process">5. Delivery & Technical Support</h3>
@@ -612,6 +872,37 @@
       </div>
     </div>
   </section>
+  <section class="generators-1-project" id="projects">
+  <div class="generators-container">
+    <header class="generators-header">
+      <p class="generators-kicker">Past Project Experience</p>
+      <h2>iEngineering Australia Pty Ltd – Projects</h2>
+    </header>
+
+    <div class="generators-grid">
+
+      <article class="generators-card reveal-left is-visible">
+        <figure class="generators-media">
+          <img src="{% static '../static/images/pro2.png' %}" alt="Tubular heater assembly" />
+          <span class="generators-year">2025</span>
+        </figure>
+        <div class="generators-body">
+          <h3>Tubular Heater</h3>
+          <p class="generators-client"><strong>Country:</strong> Fiji</p>
+          <p>Tubular heater assembly rated at 1400 W and 230 V, designed with two 8 mm diameter heating elements and an overall length of 905 mm, complete with an approximately 1 1/2" hexagon collar for secure fitting.</p>
+          {% comment %} <ul class="generators-points">
+            <li><strong>Rating:</strong> 1400 W, 230 V</li>
+            <li><strong>Configuration:</strong> Two heating elements</li>
+            <li><strong>Element Diameter:</strong> 8 mm</li>
+            <li><strong>Overall Length:</strong> 905 mm</li>
+            <li><strong>Fitting:</strong> Approx. 1 1/2" hexagon collar for secure fitting</li>
+          </ul> {% endcomment %}
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
 
   <section class="section-why-le-electrical-why-us" id="why-us">
     <div class="container-le-electrical-why-us">
@@ -678,7 +969,7 @@
 
         <!-- RIGHT: image -->
         <figure class="media-le-electrical-why-us reveal-right-le-electrical-why-us">
-          <img src="{% static 'images/thermal_experts.avif' %}"
+          <img src="{% static 'images/7.avif' %}"
             alt="Experts designing high-performance heating equipment" class="img-le-electrical-why-us">
         </figure>
 
@@ -820,7 +1111,7 @@
             <p class="neplan-locations-phone reveal-right"><strong>Phone:</strong> +61 (02) 8318 1490</p>
             <p class="neplan-locations-email reveal-right">
               <strong class="reveal-right reveal-right">Email:</strong>
-              <a href="mailto:dnaiker@iengaust.com.au reveal-right">dnaiker@iengaust.com.au</a>
+              <a href="mailto:enquiries@iengaust.com.au reveal-right">enquiries@iengaust.com.au</a>
             </p>
             <p class="neplan-locations-address reveal-right">
               Warawara Cct, Quakers Hill NSW 2763, Australia
@@ -877,10 +1168,10 @@
             <p class="neplan-locations-phone reveal-right"><strong>Phone:</strong> +679 9488589</p>
             <p class="neplan-locations-email reveal-right">
               <strong>Email:</strong>
-              <a href="mailto:dnaiker@iengaust.com.au reveal-right">dnaiker@iengaust.com.au</a>
+              <a href="mailto:enquiries@iengaust.com.au reveal-right">enquiries@iengaust.com.au</a>
             </p>
             <p class="neplan-locations-address reveal-right">
-              Lot 17, River Drive, Pacific Harbour, Navua, Suva, Fiji.
+              Suva, Fiji.
             </p>
 
             <a class="neplan-locations-map reveal-right" target="_blank" rel="noopener"

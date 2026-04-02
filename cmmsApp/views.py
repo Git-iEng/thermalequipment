@@ -7,6 +7,9 @@ from django.core.exceptions import ValidationError
 from django.core.mail import get_connection, EmailMultiAlternatives
 from django.utils import timezone
 from django.contrib import messages
+import requests
+from django.conf import settings
+
 
 from pathlib import Path
 from datetime import datetime
@@ -101,6 +104,12 @@ def _send_contact_email_async(subject: str, text_body: str, html_body: str | Non
 def request_demo_view(request):
     if request.method != "POST":
         return redirect("/")
+    
+    # CAPTCHA check
+    if not verify_recaptcha(request):
+        messages.error(request, "Please complete the CAPTCHA.")
+        return redirect(request.META.get("HTTP_REFERER", "/"))
+
 
     # Pull fields
     full_name = request.POST.get("full_name", "").strip()
@@ -181,18 +190,32 @@ def request_demo_view(request):
 
 
 def home(request):
-    return render(request, "index.html")
+    return render(request, "index.html", {
+        "RECAPTCHA_SITE_KEY": settings.RECAPTCHA_SITE_KEY
+    })
+
 
 
 def request_demo(request):
-    return render(request, "request_demo_modal.html")
+    return render(request, "request_demo_modal.html", {
+        "RECAPTCHA_SITE_KEY": settings.RECAPTCHA_SITE_KEY
+    })
 
 
 
 
-def contact(request):     return render(request, "contact.html")
 
-def about(request):       return render(request, "about.html")
+def contact(request):     return render(request, "contact.html", {
+        "RECAPTCHA_SITE_KEY": settings.RECAPTCHA_SITE_KEY
+    })
+
+
+def about(request):       
+    return render(request, "about.html", {
+        "RECAPTCHA_SITE_KEY": settings.RECAPTCHA_SITE_KEY
+    })
+
+
 
 def sitemap(request):
     with staticfiles_storage.open('sitemap.xml') as sitemap_file:
@@ -306,6 +329,12 @@ def contact_block_submit(request):
     """
     if request.method != "POST":
         return redirect(request.META.get("HTTP_REFERER", "/"))
+    
+    # CAPTCHA check
+    if not verify_recaptcha(request):
+        messages.error(request, "Please complete the CAPTCHA.")
+        return redirect(request.META.get("HTTP_REFERER", "/"))
+
 
     name    = (request.POST.get("name")    or "").strip()
     email   = (request.POST.get("email")   or "").strip()
@@ -338,25 +367,25 @@ def contact_block_submit(request):
     dial_code = _dial_code_from_alpha2(alpha2)
 
     # --- Append to Excel ---
-    xlsx_path = Path(getattr(settings, "CONTACT_SUBMISSIONS_XLSX",
-                             Path(settings.BASE_DIR) / "contact_submissions.xlsx"))
+    # xlsx_path = Path(getattr(settings, "CONTACT_SUBMISSIONS_XLSX",
+    #                          Path(settings.BASE_DIR) / "contact_submissions.xlsx"))
     # Be liberal with columns; utils will just append the row.
-    append_submission_xlsx(
-        xlsx_path,
-        [
-            datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-            name,
-            email,
-            e164_phone or phone,
-            alpha2,
-            country_name,
-            dial_code,
-            service,
-            message,
-            request.META.get("REMOTE_ADDR", ""),
-            request.META.get("HTTP_REFERER", ""),
-        ],
-    )
+    # append_submission_xlsx(
+    #     xlsx_path,
+    #     [
+    #         datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+    #         name,
+    #         email,
+    #         e164_phone or phone,
+    #         alpha2,
+    #         country_name,
+    #         dial_code,
+    #         service,
+    #         message,
+    #         request.META.get("REMOTE_ADDR", ""),
+    #         request.META.get("HTTP_REFERER", ""),
+    #     ],
+    # )
 
     # --- Email notification ---
     subject = f"[Website] Consulting request: {name} – {service or 'General'}"
@@ -377,7 +406,7 @@ def contact_block_submit(request):
     # Reuse your async sender
     _send_contact_email_async(subject, text_body, None)
 
-    messages.success(request, "Thanks! Your request was submitted successfully.")
+    # messages.success(request, "Thanks! Your request was submitted successfully.")
     return redirect(reverse("cmmsApp:contact_thanks"))
 
 def neplan_electricity(request):
@@ -409,3 +438,25 @@ def country_list(request):
   return JsonResponse(data, safe=False)
 def contact_thanks(request):
     return render(request, "contact_thanks.html", {})
+
+
+def verify_recaptcha(request):
+    captcha_response = (request.POST.get("g-recaptcha-response") or "").strip()
+    if not captcha_response:
+        print("reCAPTCHA failed: no captcha response")
+        return False
+    data = {
+        "secret": settings.RECAPTCHA_SECRET_KEY,
+        "response": captcha_response,
+    }
+    try:
+        response = requests.post(
+            "https://www.google.com/recaptcha/api/siteverify",
+            data=data,
+            timeout=10
+        )
+        result = response.json()
+        return result.get("success", False)
+    except requests.RequestException as e:
+        print("reCAPTCHA request error:", str(e))
+        return False
