@@ -405,3 +405,83 @@
   border-color: #222222 !important;
 }
 
+
+/* ===== MOBILE FIX FOR CONSULT FORM ===== */
+@media (max-width: 640px) {
+  .consult-block {
+    padding: 12px;
+    overflow-x: hidden;
+  }
+
+  .consult-block__inner {
+    width: 100%;
+    max-width: 100%;
+    grid-template-columns: 1fr !important;
+    gap: 14px;
+  }
+
+  .consult-left,
+  .consult-form {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    border-radius: 14px;
+  }
+
+  .consult-form {
+    padding: 14px;
+    overflow-x: hidden;
+  }
+
+  .consult-grid {
+    grid-template-columns: 1fr !important;
+    gap: 10px;
+  }
+
+  .consult-grid > * {
+    min-width: 0;
+  }
+
+  .consult-grid input,
+  .consult-grid select,
+  .consult-grid textarea,
+  .consult-send {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  .consult-grid textarea {
+    grid-column: 1 / -1;
+  }
+
+  .consult-send {
+    grid-column: 1;
+    justify-self: stretch;
+  }
+
+  .consult-photo {
+    width: 100%;
+    max-width: 220px;
+    margin: 12px auto 0;
+  }
+
+  .consult-photo img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* reCAPTCHA overflow fix */
+  .g-recaptcha {
+    transform: scale(0.84);
+    transform-origin: left top;
+    max-width: 100%;
+  }
+
+  .g-recaptcha > div {
+    max-width: 100% !important;
+  }
+}
