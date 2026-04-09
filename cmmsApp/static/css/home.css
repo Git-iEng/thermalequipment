@@ -1268,6 +1268,7 @@ body {
 .reveal-in-lv-electrical-process {
   opacity: 1 !important;
   transform: none !important;
+  padding-left: 15px !important;
 }
 
 /* ===== responsive ===== */
@@ -3061,6 +3062,7 @@ section+section {
 .-gemini-text-content,
 .-gemini-image-content {
   flex: 1;
+  padding-left: 20px;
 }
 
 /* Headings in this section – keep same style as about section title style */
@@ -3253,3 +3255,51 @@ section+section {
   }
 }
 
+/* ===== MOBILE FIX: contact form overflowing right side ===== */
+@media (max-width: 640px) {
+  .container-lv-electrical-get-in-touch {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 12px;
+    padding-right: 12px;
+    box-sizing: border-box;
+  }
+
+  .card-lv-electrical-get-in-touch {
+    width: 100%;
+    max-width: 100%;
+    grid-template-columns: 1fr;
+    transform: none;
+    margin-left: 0;
+    margin-right: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+
+  .content-lv-electrical-get-in-touch,
+  .media-lv-electrical-get-in-touch {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .content-lv-electrical-get-in-touch {
+    padding: 16px 14px;
+  }
+
+  .content-lv-electrical-get-in-touch input,
+  .content-lv-electrical-get-in-touch select,
+  .content-lv-electrical-get-in-touch textarea,
+  .content-lv-electrical-get-in-touch .form-control,
+  .content-lv-electrical-get-in-touch .wpcf7-form-control {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .content-lv-electrical-get-in-touch iframe,
+  .content-lv-electrical-get-in-touch .g-recaptcha,
+  .content-lv-electrical-get-in-touch .grecaptcha-badge {
+    max-width: 100%;
+  }
+}
