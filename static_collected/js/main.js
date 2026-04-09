@@ -984,7 +984,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         extraCards.forEach(el => el.classList.add('is-hidden'));
         closeDetails();
-        exploreBtn.textContent = 'Explore Types';
+        exploreBtn.textContent = 'Product Types';
         exploreBtn.setAttribute('aria-expanded', 'false');
         
       }

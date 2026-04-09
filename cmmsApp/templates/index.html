@@ -80,7 +80,6 @@
 }
 
 .generators-grid .generators-card{
-  grid-column:2;
   max-width:380px;
   width:100%;
 }
@@ -265,7 +264,25 @@
 
 .generators-1-project .generators-year{
   inset:12px auto auto 12px;
-}</style>
+}
+.project-image-fit .generators-media{
+  height: 320px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.project-image-fit .generators-media img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  transform: none;
+}
+</style>
 </head>
 <body>
   {% include 'header.html' %}
@@ -378,7 +395,7 @@
   <section class="section-services-lv-electrical-services" id="solutions">
     <div class="services-head-lv-electrical-services">
       <div class="head-left-lv-electrical-services reveal-left-lv-electrical-services">
-        <a class="eyebrow-lv-electrical-services">Types</a>
+        <a class="eyebrow-lv-electrical-services">Products</a>
         <h2 class="title-lv-electrical-services">
           Comprehensive Guide to Various Heating Element Types for Industrial and Commercial Thermal Equipment
         </h2>
@@ -872,38 +889,6 @@
       </div>
     </div>
   </section>
-  <section class="generators-1-project" id="projects">
-  <div class="generators-container">
-    <header class="generators-header">
-      <p class="generators-kicker">Past Project Experience</p>
-      <h2>iEngineering Australia Pty Ltd – Projects</h2>
-    </header>
-
-    <div class="generators-grid">
-
-      <article class="generators-card reveal-left is-visible">
-        <figure class="generators-media">
-          <img src="{% static '../static/images/pro2.png' %}" alt="Tubular heater assembly" />
-          <span class="generators-year">2025</span>
-        </figure>
-        <div class="generators-body">
-          <h3>Tubular Heater</h3>
-          <p class="generators-client"><strong>Country:</strong> Fiji</p>
-          <p>Tubular heater assembly rated at 1400 W and 230 V, designed with two 8 mm diameter heating elements and an overall length of 905 mm, complete with an approximately 1 1/2" hexagon collar for secure fitting.</p>
-          {% comment %} <ul class="generators-points">
-            <li><strong>Rating:</strong> 1400 W, 230 V</li>
-            <li><strong>Configuration:</strong> Two heating elements</li>
-            <li><strong>Element Diameter:</strong> 8 mm</li>
-            <li><strong>Overall Length:</strong> 905 mm</li>
-            <li><strong>Fitting:</strong> Approx. 1 1/2" hexagon collar for secure fitting</li>
-          </ul> {% endcomment %}
-        </div>
-      </article>
-
-    </div>
-  </div>
-</section>
-
   <section class="section-why-le-electrical-why-us" id="why-us">
     <div class="container-le-electrical-why-us">
       <div class="grid-le-electrical-why-us">
@@ -981,7 +966,67 @@
     </div>
   </section>
 
+<section class="generators-1-project" id="projects">
+  <div class="generators-container">
+    <header class="generators-header">
+      <p class="generators-kicker">Past Project Experience</p>
+    </header>
 
+    <div class="generators-grid">
+
+      <!-- Project 1 : 2023 -->
+      <article class="generators-card project-image-fit reveal-left is-visible">
+        <figure class="generators-media">
+          <img src="{% static 'images/HVR Heater.png' %}" alt="HVR heaters supplied to Solomon Islands" />
+          <span class="generators-year">2023</span>
+        </figure>
+        <div class="generators-body">
+          <h3>Supply of HVR Heaters</h3>
+          <p class="generators-client"><strong>Country:</strong> Solomon Islands</p>
+          <p>
+            Supply of HVR heaters including ACH100 (100 W, 230 V) and ACH200 (200 W, 230 V)
+            for use in electrical panels and control cabinets. These heaters were used to
+            prevent moisture and condensation and improve enclosure reliability.
+          </p>
+        </div>
+      </article>
+
+      <!-- Project 2 : 2024 -->
+      <article class="generators-card project-image-fit reveal-left is-visible">
+        <figure class="generators-media">
+          <img src="{% static 'images/Immersion Heater.png' %}" alt="Circulation heater supplied to Solomon Islands" />
+          <span class="generators-year">2024</span>
+        </figure>
+        <div class="generators-body">
+          <h3>Supply of Circulation Heater</h3>
+          <p class="generators-client"><strong>Country:</strong> Solomon Islands</p>
+          <p>
+            Supply of circulation heater to Solomon Islands for industrial heating application,
+            providing reliable and efficient thermal performance for the required operating conditions.
+          </p>
+        </div>
+      </article>
+
+      <!-- Project 3 : 2025 -->
+     <article class="generators-card project-image-third reveal-left is-visible">
+        <figure class="generators-media">
+          <img src="{% static 'images/Heating element_1.png' %}" alt="Tubular heater assembly" />
+          <span class="generators-year">2025</span>
+        </figure>
+        <div class="generators-body">
+          <h3>Tubular Heater</h3>
+          <p class="generators-client"><strong>Country:</strong> Fiji</p>
+          <p>
+            Tubular heater assembly rated at 1400 W and 230 V, designed with two 8 mm diameter
+            heating elements and an overall length of 905 mm, complete with an approximately
+            1 1/2&quot; hexagon collar for secure fitting.
+          </p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
 
   <section id="about-us" class="cmms-contact-form-wrap">
     <div class="cmms-contact-form-inner">
